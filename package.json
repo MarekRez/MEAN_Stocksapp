@@ -1,0 +1,19 @@
+{
+  "name": "fhi-imapl-2024",
+  "version": "1.0.0",
+  "description": "Internetové a mobilné aplikácie I",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sromovsky/fhi-imapl-2024.git"
+  },
+  "author": "Tomáš Šromovský",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sromovsky/fhi-imapl-2024/issues"
+  },
+  "homepage": "https://github.com/sromovsky/fhi-imapl-2024#readme"
+}
