@@ -64,3 +64,6 @@ Hodnotenie známkovacou stupnicou:
 
 ### Priebeh predmetu
 6 cvičení spojených s prednáškou (každý 2. týždeň počas semestra)
+
+### Úlohy
+* [TASKS.md](./TASKS.md)
