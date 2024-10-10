@@ -46,4 +46,28 @@ function palindrom(veta){
         console.log("Nie je to palindrom!")
     }
 }
-palindrom("kajak")
+//palindrom("kajak")
+
+//task4
+function mocninca(a,n){
+    let vysledok = a;
+    for (n; n>1; n--)
+     {vysledok = vysledok*a}
+    console.log(vysledok)
+}
+//mocninca(-2,5)
+//task5
+function fibonacci(n){
+    let a = 0;
+    let b= 1;
+    let vysledok = '0, 1'
+    for (let i = n-2; i>0; i--){
+        let nasledujuci = a+b;
+        vysledok= vysledok + ', ' + nasledujuci;
+        a=b;
+        b=nasledujuci;
+        }
+    return vysledok;
+}
+//console.log(fibonacci(11))
+//task6
