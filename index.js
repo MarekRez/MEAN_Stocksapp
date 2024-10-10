@@ -104,3 +104,19 @@ function taxi(km, cakanieMin, znecistenie) {
     return total.toFixed(2) + ' €';
 }
 //console.log(taxi(15, 5, 'n'));
+//task8
+function baltimoresky(text) {
+    const sifra = {
+        'B': 1, 'A': 2, 'L': 3, 'T': 4, 'I': 5, 'M': 6, 'O': 7, 'R': 8, 'E': 9, 'S': 10, 'K': 11, 'Y': 12
+    };
+    let zasifrovane = '';
+    for (let char of text.toUpperCase()) {
+        if (sifra[char]) {
+            zasifrovane += sifra[char];
+        } else {
+            zasifrovane += char;
+        }
+    }
+    return zasifrovane;
+}
+//console.log(baltimoresky("To nemyslite vážne!"));
