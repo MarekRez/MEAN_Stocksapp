@@ -1,17 +1,18 @@
-class Stock {
-    public stockName: string;
-    private marketOpening: string;
-    private marketClosing: string;
+export class Stock {
+    public name: string;
+    public currency:string;
     public stockPrice: number;
+    private dividendYield:number;
+    private balance:number;
 
-    constructor(stockName:string, marketOpening: string, marketClosing: string, stockPrice: number) {
-        this.stockName = stockName;
-        this.marketOpening = marketOpening;
-        this.marketClosing = marketClosing;
+    constructor(stockName:string, currency:string, stockPrice: number, dividendYield:number, balance:number) {
+        this.name = stockName;
+        this.currency = currency;
         this.stockPrice = stockPrice;
+        this.dividendYield = dividendYield;
+        this.balance = balance;
     }
-    public getPrice():number{
-        return this.stockPrice;
+    public getBalance():number{
+        return this.balance;
     }
 }
-const stock = new Stock("Apple", "Tuesday", "Friday", 250);
