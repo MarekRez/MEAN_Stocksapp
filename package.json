@@ -1,11 +1,11 @@
 {
   "name": "fhi-imapl-2024",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Internetové a mobilné aplikácie I",
-  "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "start:lecture": "node lecture.js"
+    "start": "node src/index.js",
+    "start:javascript": "node src-lecture/javascript-lecture.js",
+    "start:typescript": "ts-node src-lecture/typescript-lecture.ts"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/sromovsky/fhi-imapl-2024/issues"
   },
-  "homepage": "https://github.com/sromovsky/fhi-imapl-2024#readme"
+  "homepage": "https://github.com/sromovsky/fhi-imapl-2024#readme",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
 }
