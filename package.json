@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "Internetové a mobilné aplikácie I",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node src/lecture-1.js",
     "start:javascript": "node src-lecture/javascript-lecture.js",
     "start:typescript": "ts-node src-lecture/typescript-lecture.ts"
   },
