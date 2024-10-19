@@ -7,3 +7,4 @@ export enum StockSymbol {
     FB = "Meta Platforms",
     NFLX = "Netflix",
 }
+//typy akcii

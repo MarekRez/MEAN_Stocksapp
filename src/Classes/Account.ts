@@ -1,3 +1,4 @@
+// models/Account.ts
 import { InvestmentRecord } from './InvestmentRecord';
 import { Stock } from './Stock';
 
@@ -20,6 +21,8 @@ export class Account {
             // Store the investment record
             const investmentRecord = new InvestmentRecord(stock, sharesToBuy, stock.stockPrice, "buy");
             this.investmentHistory.push(investmentRecord);
+
+            stock.totalShares += sharesToBuy; // Update total shares in the stock
 
             console.log(`Invested ${totalInvestment.toFixed(2)} in ${sharesToBuy} shares of ${stock.name} at ${stock.stockPrice.toFixed(2)} each. New balance: ${this.balance.toFixed(2)}`);
         } else {
@@ -66,5 +69,13 @@ export class Account {
             console.log(`Withdrawal failed: Insufficient funds. Current balance: ${this.balance.toFixed(2)}`);
             return false; // Withdrawal failed
         }
+    }
+
+    public calculatePortfolioValue(): number {
+        let totalValue = 0;
+        this.investmentHistory.forEach(record => {
+            totalValue += record.shares * record.price; // Current value of stocks based on transaction records
+        });
+        return totalValue;
     }
 }

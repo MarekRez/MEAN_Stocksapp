@@ -1,10 +1,11 @@
 import { Stock } from './Stock';
 
+// ukladame sem udaje o akciach
 export class InvestmentRecord {
-    public stock: Stock; // The stock involved in the investment
-    public shares: number; // Number of shares bought/sold
-    public price: number;  // Price at which shares were bought/sold
-    public type: "buy" | "sell"; // Type of transaction
+    public stock: Stock;
+    public shares: number; // kolko sme kupili/predali
+    public price: number;  // cena na ktorej sme kupili/predali
+    public type: "buy" | "sell"; // typ transakcie
 
     constructor(stock: Stock, shares: number, price: number, type: "buy" | "sell") {
         this.stock = stock;

@@ -1,3 +1,4 @@
+// models/BankAccount.ts
 export class BankAccount {
     public iban: string; // Unique IBAN for the bank account
     private balance: number; // Balance in the bank account

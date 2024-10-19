@@ -1,3 +1,4 @@
+// models/Person.ts
 import { BankAccount } from './BankAccount';
 import { Account } from './Account';
 
