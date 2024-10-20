@@ -14,8 +14,9 @@ export class Person {
         this.investmentAccount = investmentAccount;
     }
 
+    // Deposit money to the bank account from the investment account
     public depositToBank(amount: number): void {
-        if (amount <= this.investmentAccount.balance) { // Ensure the amount is available in the investment account
+        if (amount <= this.investmentAccount.balance) {
             this.investmentAccount.withdraw(amount); // Withdraw from the investment account
             this.bankAccount.deposit(amount); // Deposit to the bank account
             console.log(`Deposited ${amount.toFixed(2)} to bank account ${this.bankAccount.iban}. New bank balance: ${this.bankAccount.getBalance().toFixed(2)}`);
@@ -23,6 +24,7 @@ export class Person {
             console.log(`Deposit to bank failed: Insufficient funds in investment account.`);
         }
     }
+
 
     public withdrawFromBank(amount: number): void {
         if (this.bankAccount.withdraw(amount)) { // Withdraw from the bank account
@@ -32,5 +34,4 @@ export class Person {
             console.log(`Withdrawal failed: Insufficient funds in bank account.`);
         }
     }
-
 }

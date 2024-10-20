@@ -6,9 +6,11 @@ export class Account {
     private stocks: Stock[] = []; // Array of stocks in the account
     public balance: number;        // Account balance
     private investmentHistory: InvestmentRecord[] = []; // Track investment transactions
+    private bankAccount: BankAccount; // Reference to the person's bank account
 
-    constructor(initialBalance: number) {
+    constructor(initialBalance: number, bankAccount: BankAccount) {
         this.balance = initialBalance; // Initialize account balance
+        this.bankAccount = bankAccount; // Initialize bank account reference
     }
 
     // Invest in a stock with a specified amount of money
@@ -66,8 +68,13 @@ export class Account {
 
     // Deposit a specified amount into the account
     public deposit(amount: number): void {
-        this.balance += amount;
-        console.log(`Deposited ${amount.toFixed(2)} to account. New balance: ${this.balance.toFixed(2)}`);
+        // Deduct from bank account and add to investment account
+        if (this.bankAccount.withdraw(amount)) { // Check if withdrawal from bank is successful
+            this.balance += amount;
+            console.log(`Deposited ${amount.toFixed(2)} to investment account. New balance: ${this.balance.toFixed(2)}`);
+        } else {
+            console.log(`Deposit failed: Insufficient funds in bank account.`);
+        }
     }
 
     // Withdraw a specified amount from the account
