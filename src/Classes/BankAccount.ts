@@ -1,14 +1,15 @@
-// models/BankAccount.ts
+import { Account } from "./Account";
+
 export class BankAccount {
-    public iban: string; // Unique IBAN for the bank account
-    private balance: number; // Balance in the bank account
+    public iban: string;
+    private balance: number;
 
     constructor(initialBalance: number) {
-        this.iban = this.generateIBAN(); // Generate a random IBAN
-        this.balance = initialBalance; // Initialize the balance
+        this.iban = this.generateIBAN(); // Generates a new IBAN for each object
+        this.balance = initialBalance;
     }
 
-    // Generate a random IBAN (dummy implementation)
+    // Generates a random IBAN from letters and numbers
     private generateIBAN(): string {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         let iban = 'IBAN-';
@@ -18,7 +19,7 @@ export class BankAccount {
         return iban;
     }
 
-    // Deposit money into the bank account
+    // Deposit to bank account
     public deposit(amount: number): void {
         if (amount > 0) {
             this.balance += amount;
@@ -28,19 +29,19 @@ export class BankAccount {
         }
     }
 
-    // Withdraw money from the bank account
+    // Withdraw from bank account
     public withdraw(amount: number): boolean {
         if (amount <= this.balance) {
             this.balance -= amount;
             console.log(`Withdrawn ${amount.toFixed(2)} from bank account ${this.iban}. New balance: ${this.balance.toFixed(2)}`);
-            return true; // Withdrawal successful
+            return true; // Successful withdrawal
         } else {
             console.log(`Withdrawal failed: Insufficient funds in bank account ${this.iban}. Current balance: ${this.balance.toFixed(2)}`);
             return false; // Withdrawal failed
         }
     }
 
-    // Get current balance
+    // Check the balance of the bank account
     public getBalance(): number {
         return this.balance;
     }

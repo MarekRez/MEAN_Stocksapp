@@ -1,6 +1,6 @@
-// models/Account.ts
 import { InvestmentRecord } from './InvestmentRecord';
 import { Stock } from './Stock';
+import {BankAccount} from "./BankAccount";
 
 export class Account {
     private stocks: Stock[] = []; // Array of stocks in the account
@@ -16,23 +16,34 @@ export class Account {
         const sharesToBuy = Math.floor(investmentAmount / stock.stockPrice);
         if (sharesToBuy > 0) {
             const totalInvestment = sharesToBuy * stock.stockPrice;
-            this.balance -= totalInvestment; // Deduct from balance
 
-            // Store the investment record
-            const investmentRecord = new InvestmentRecord(stock, sharesToBuy, stock.stockPrice, "buy");
-            this.investmentHistory.push(investmentRecord);
+            // Check if there are sufficient funds before investing
+            if (totalInvestment <= this.balance) {
+                this.balance -= totalInvestment; // Deduct from balance
 
-            stock.totalShares += sharesToBuy; // Update total shares in the stock
+                // Store the investment record
+                const investmentRecord = new InvestmentRecord(stock, sharesToBuy, stock.stockPrice, "buy");
+                this.investmentHistory.push(investmentRecord);
 
-            console.log(`Invested ${totalInvestment.toFixed(2)} in ${sharesToBuy} shares of ${stock.name} at ${stock.stockPrice.toFixed(2)} each. New balance: ${this.balance.toFixed(2)}`);
+                stock.totalShares += sharesToBuy; // Update total shares in the stock
+
+                console.log(`Invested ${totalInvestment.toFixed(2)} in ${sharesToBuy} shares of ${stock.name} at ${stock.stockPrice.toFixed(2)} each. New balance: ${this.balance.toFixed(2)}`);
+            } else {
+                console.log(`Investment failed: Insufficient funds to buy shares. Required: ${totalInvestment.toFixed(2)}, Available: ${this.balance.toFixed(2)}`);
+            }
         } else {
             console.log(`Investment failed: Insufficient funds to buy shares.`);
         }
     }
 
-    // Withdraw shares from a specific stock
-    public withdrawFromStock(stock: Stock, sharesToSell: number): void {
+    // Withdraw an amount of money from the account by selling shares of a specific stock
+    public withdrawFromStock(stock: Stock, amountToWithdraw: number): void {
         const sharesAvailable = stock.totalShares;
+
+        // Calculate how many shares are needed to sell to get the desired amount
+        const sharesToSell = Math.floor(amountToWithdraw / stock.stockPrice);
+
+        // Check if enough shares are available for the withdrawal
         if (sharesToSell <= sharesAvailable) {
             const cashReceived = sharesToSell * stock.stockPrice; // Calculate cash received from selling shares
             stock.totalShares -= sharesToSell; // Update total shares in the stock
@@ -42,11 +53,11 @@ export class Account {
             const investmentRecord = new InvestmentRecord(stock, sharesToSell, stock.stockPrice, "sell");
             this.investmentHistory.push(investmentRecord);
 
-            console.log(`Sold ${sharesToSell.toFixed(4)} shares of ${stock.name} at ${stock.stockPrice.toFixed(2)} each. Received ${cashReceived.toFixed(2)}. New balance: ${this.balance.toFixed(2)}`);
+            console.log(`Sold ${sharesToSell} shares of ${stock.name} for ${cashReceived.toFixed(2)}. New balance: ${this.balance.toFixed(2)}`);
         } else {
-            console.log(`Withdrawal failed: Not enough shares to sell. Available shares: ${sharesAvailable.toFixed(4)}`);
+            console.log(`Withdrawal failed: Not enough shares to sell. Available shares: ${sharesAvailable}`);
         }
-    }
+}
 
     // Get investment history
     public getInvestmentHistory(): InvestmentRecord[] {
