@@ -1,15 +1,13 @@
-// models/Portfolio.ts
 import { Stock } from './Stock';
 
 export class Portfolio {
-    private stocks: Stock[] = []; // Array of stocks in the portfolio
+    private stocks: Stock[] = [];
 
-    // Add a stock to the portfolio
     public addStock(stock: Stock): void {
-        this.stocks.push(stock);
+        this.stocks.push(stock); // pridanie akcie do zoznamu akcii v portfoliu
     }
 
-    // Simulate all stocks for a given number of months
+    // simulaciu priebehu casu a dopadok na akcie
     public simulateMonths(months: number, showInfo: boolean = true): void {
         console.log(`\n--- Portfolio Simulation for ${months} months ---\n`);
 
@@ -20,9 +18,14 @@ export class Portfolio {
 
             let totalBalance = 0;
 
-            // Simulate each stock and accumulate the total balance
-            this.stocks.forEach((stock) => {
-                const { monthPrice, totalShares, balance } = stock.simulateMonth();
+            // simulacia mesiaca na dany pocet mesiacov pre kazdu individualnu akciu a akumulacia balancu akcie
+            this.stocks.forEach((stock) => { // loop forEach poznamka pre seba - an array method that iterates over each element in an array (callback f.)
+                const result = stock.simulateMonth();
+
+                const monthPrice = result.monthPrice;
+                const totalShares = result.totalShares;
+                const balance = result.balance;
+                // const { monthPrice, totalShares, balance } = stock.simulateMonth(); - poznamka pre seba, destructuringom by sa to dalo napisat aj takto
 
                 if (showInfo) {
                     console.log(`  ${stock.name}:`);
@@ -31,7 +34,7 @@ export class Portfolio {
                     console.log(`    Balance: ${balance.toFixed(2)} ${stock.currency}\n`);
                 }
 
-                totalBalance += balance;
+                totalBalance += balance; // vsetky akcie v portfoliu spolu - balance za dany mesiac
             });
 
             if (showInfo) {
@@ -39,12 +42,12 @@ export class Portfolio {
             }
         }
 
-        if (!showInfo) {
+        if (!showInfo) { //ak zadame parameter "false", rovno prejdeme na final balance a preskocime podrobny vypis
             this.showFinalBalance();
         }
     }
 
-    // Show final balance for the portfolio
+    // finalny balance za vsetky mesiace dokopy
     private showFinalBalance(): void {
         console.log(`\n--- Final Portfolio Summary ---`);
 

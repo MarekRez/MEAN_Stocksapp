@@ -1,7 +1,7 @@
-import { Stock } from './Classes/Stock';
-import { Account } from './Classes/Account';
-import { Portfolio } from './Classes/Portfolio';
-import { StockSymbol } from './Enums/StockSymbol';
+import { Stock } from '../Classes/Stock';
+import { Account } from '../Classes/Account';
+import { Portfolio } from '../Classes/Portfolio';
+import { StockSymbol } from '../Enums/StockSymbol';
 
 // vytvorime akcie s volitel. parametrami (name, currency, stockPrice, dividendYield, volatility a expectedReturn)
 const apple = new Stock(StockSymbol.AAPL, "USD", 150, 0.02, 0.2, 0.8);
