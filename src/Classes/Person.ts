@@ -4,8 +4,8 @@ import { Account } from './Account';
 export class Person {
     private name: string;
     private email: string;
-    private bankAccount: BankAccount; // Reference to the person's bank account
-    private investmentAccount: Account; // Optional investment account
+    private bankAccount: BankAccount; // bankovy ucet
+    private investmentAccount: Account; // investicny ucet
 
     constructor(name: string, email: string, bankAccount: BankAccount, investmentAccount: Account) {
         this.name = name;
@@ -14,11 +14,11 @@ export class Person {
         this.investmentAccount = investmentAccount;
     }
 
-    // Deposit money to the bank account from the investment account
+    // poslanie penazi z investicneho uctu na bankovy ucet
     public depositToBank(amount: number): void {
         if (amount <= this.investmentAccount.balance) {
-            this.investmentAccount.withdraw(amount); // Withdraw from the investment account
-            this.bankAccount.deposit(amount); // Deposit to the bank account
+            this.investmentAccount.withdraw(amount); // volame metodu withdraw z Account
+            this.bankAccount.deposit(amount); // metoda deposit z bankAccount
             console.log(`Deposited ${amount.toFixed(2)} to bank account ${this.bankAccount.iban}. New bank balance: ${this.bankAccount.getBalance().toFixed(2)}`);
         } else {
             console.log(`Deposit to bank failed: Insufficient funds in investment account.`);
@@ -27,8 +27,8 @@ export class Person {
 
 
     public withdrawFromBank(amount: number): void {
-        if (this.bankAccount.withdraw(amount)) { // Withdraw from the bank account
-            this.investmentAccount.deposit(amount); // Deposit to the investment account
+        if (this.bankAccount.withdraw(amount)) {
+            this.investmentAccount.deposit(amount);
             console.log(`Withdrawn ${amount.toFixed(2)} from bank account ${this.bankAccount.iban}. New investment balance: ${this.investmentAccount.balance.toFixed(2)}`);
         } else {
             console.log(`Withdrawal failed: Insufficient funds in bank account.`);

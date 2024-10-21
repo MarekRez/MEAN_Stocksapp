@@ -6,9 +6,9 @@ import { Portfolio } from '../Classes/Portfolio';
 import { StockSymbol } from '../Enums/StockSymbol';
 
 // spravime akciu s volitelnymi parametrami (name, currency, stockPrice, dividendYield, volatility, and expectedReturn)
-const apple = new Stock(StockSymbol.AAPL, "USD", 150, 0.02, 0.2, 0.8);
-const google = new Stock(StockSymbol.GOOGL, "USD", 2800, 0.01, 0.3, 0.6);
-const tesla = new Stock(StockSymbol.TSLA, "USD", 750, 0.015, 0.4, 0.7);
+const apple = new Stock(StockSymbol.AAPL, "USD", 150, 0.02, 0.6, 0.2);
+const google = new Stock(StockSymbol.GOOGL, "USD", 2800, 0.20, 0.7, 0.3);
+const tesla = new Stock(StockSymbol.TSLA, "USD", 750, 0.15, 0.8, 0.1);
 
 // novy bankovy ucet 1
 const bankAccount1 = new BankAccount(10000);

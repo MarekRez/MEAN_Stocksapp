@@ -3,31 +3,29 @@ import { Stock } from './Stock';
 import {BankAccount} from "./BankAccount";
 
 export class Account {
-    private stocks: Stock[] = []; // Array of stocks in the account
-    public balance: number;        // Account balance
-    private investmentHistory: InvestmentRecord[] = []; // Track investment transactions
-    private bankAccount: BankAccount; // Reference to the person's bank account
+    private stocks: Stock[] = []; // pole akcii Stock
+    public balance: number;
+    private investmentHistory: InvestmentRecord[] = []; // historia akcii
+    private bankAccount: BankAccount; //
 
     constructor(initialBalance: number, bankAccount: BankAccount) {
-        this.balance = initialBalance; // Initialize account balance
-        this.bankAccount = bankAccount; // Initialize bank account reference
+        this.balance = initialBalance;
+        this.bankAccount = bankAccount;
     }
 
-    // Invest in a stock with a specified amount of money
+    // metoda na investovanie do akcie
     public investInStock(stock: Stock, investmentAmount: number): void {
         const sharesToBuy = Math.floor(investmentAmount / stock.stockPrice);
         if (sharesToBuy > 0) {
             const totalInvestment = sharesToBuy * stock.stockPrice;
 
-            // Check if there are sufficient funds before investing
             if (totalInvestment <= this.balance) {
-                this.balance -= totalInvestment; // Deduct from balance
+                this.balance -= totalInvestment;
 
-                // Store the investment record
                 const investmentRecord = new InvestmentRecord(stock, sharesToBuy, stock.stockPrice, "buy");
                 this.investmentHistory.push(investmentRecord);
 
-                stock.totalShares += sharesToBuy; // Update total shares in the stock
+                stock.totalShares += sharesToBuy;
 
                 console.log(`Invested ${totalInvestment.toFixed(2)} in ${sharesToBuy} shares of ${stock.name} at ${stock.stockPrice.toFixed(2)} each. New balance: ${this.balance.toFixed(2)}`);
             } else {
@@ -38,20 +36,17 @@ export class Account {
         }
     }
 
-    // Withdraw an amount of money from the account by selling shares of a specific stock
+    //
     public withdrawFromStock(stock: Stock, amountToWithdraw: number): void {
         const sharesAvailable = stock.totalShares;
 
-        // Calculate how many shares are needed to sell to get the desired amount
         const sharesToSell = Math.floor(amountToWithdraw / stock.stockPrice);
 
-        // Check if enough shares are available for the withdrawal
         if (sharesToSell <= sharesAvailable) {
-            const cashReceived = sharesToSell * stock.stockPrice; // Calculate cash received from selling shares
-            stock.totalShares -= sharesToSell; // Update total shares in the stock
-            this.balance += cashReceived; // Update account balance
+            const cashReceived = sharesToSell * stock.stockPrice;
+            stock.totalShares -= sharesToSell;
+            this.balance += cashReceived;
 
-            // Store the investment record for selling
             const investmentRecord = new InvestmentRecord(stock, sharesToSell, stock.stockPrice, "sell");
             this.investmentHistory.push(investmentRecord);
 
@@ -61,15 +56,13 @@ export class Account {
         }
 }
 
-    // Get investment history
     public getInvestmentHistory(): InvestmentRecord[] {
         return this.investmentHistory;
     }
 
-    // Deposit a specified amount into the account
+    // dat peniaze do investicneho uctu
     public deposit(amount: number): void {
-        // Deduct from bank account and add to investment account
-        if (this.bankAccount.withdraw(amount)) { // Check if withdrawal from bank is successful
+        if (this.bankAccount.withdraw(amount)) { // ak je dost penazi na bankovom ucte
             this.balance += amount;
             console.log(`Deposited ${amount.toFixed(2)} to investment account. New balance: ${this.balance.toFixed(2)}`);
         } else {
@@ -77,22 +70,22 @@ export class Account {
         }
     }
 
-    // Withdraw a specified amount from the account
+    // vytiahnut peniaze z invest. uctu
     public withdraw(amount: number): boolean {
         if (amount <= this.balance) {
             this.balance -= amount;
             console.log(`Withdrawn ${amount.toFixed(2)} from account. New balance: ${this.balance.toFixed(2)}`);
-            return true; // Withdrawal successful
+            return true;
         } else {
             console.log(`Withdrawal failed: Insufficient funds. Current balance: ${this.balance.toFixed(2)}`);
-            return false; // Withdrawal failed
+            return false;
         }
     }
 
     public calculatePortfolioValue(): number {
         let totalValue = 0;
         this.investmentHistory.forEach(record => {
-            totalValue += record.shares * record.price; // Current value of stocks based on transaction records
+            totalValue += record.shares * record.price;
         });
         return totalValue;
     }

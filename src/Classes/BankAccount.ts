@@ -5,21 +5,21 @@ export class BankAccount {
     private balance: number;
 
     constructor(initialBalance: number) {
-        this.iban = this.generateIBAN(); // Generates a new IBAN for each object
+        this.iban = this.generateIBAN(); // generuje sa novy IBAN pre kazdy dalsi objekt
         this.balance = initialBalance;
     }
 
-    // Generates a random IBAN from letters and numbers
+    // IBAN na zakladem random z pismen a cislic
     private generateIBAN(): string {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         let iban = 'IBAN-';
         for (let i = 0; i < 16; i++) {
-            iban += characters.charAt(Math.floor(Math.random() * characters.length));
+            iban += characters.charAt(Math.floor(Math.random() * characters.length)); // charAt zoberie index a priradi zo zonamu characters char, math.random vrati cislo od 0 do 1 a nasledne krat dlzka pola-stringu characters
         }
         return iban;
     }
 
-    // Deposit to bank account
+    // deposit do bankoveho uctu
     public deposit(amount: number): void {
         if (amount > 0) {
             this.balance += amount;
@@ -29,7 +29,6 @@ export class BankAccount {
         }
     }
 
-    // Withdraw from bank account
     public withdraw(amount: number): boolean {
         if (amount <= this.balance) {
             this.balance -= amount;
@@ -41,7 +40,6 @@ export class BankAccount {
         }
     }
 
-    // Check the balance of the bank account
     public getBalance(): number {
         return this.balance;
     }
