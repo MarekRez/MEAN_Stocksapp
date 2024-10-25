@@ -68,7 +68,7 @@ import { User } from '../Classes/User';
 const account = new CryptoAccount();
 
 
-const user = new User('Alice', account);
+const user = new User('Bohdan123', account);
 
 
 console.log("--------Fiat deposit---------");
@@ -89,9 +89,12 @@ console.log("\n-------Check Balance-----------");
 user.getAccount().printBalances();
 
 
-console.log("\n=== Обмен биткоина на эфириум ===");
+console.log("\n-------Ethereum exchange---------");
 user.getAccount().exchangeCrypto(bitcoin, ethereum, 0.01);
 
 
 console.log("\n---------Check Price---------");
 user.getAccount().printBalances();
+
+console.log("\n--------Transaction history---------");
+user.getAccount().printTransactionHistory();
