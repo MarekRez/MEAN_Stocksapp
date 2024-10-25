@@ -22,7 +22,6 @@ app.post(`${API}/persons`, (req: Request, res: Response) => {
     const bankAccount = new BankAccount(req.body.bankAccountBalance);
     const InvestmentAccount = new Account(req.body.investmentAccountBalance, bankAccount);
     const person = new Person(req.body.name, req.body.email, bankAccount, InvestmentAccount );
-    clients.push(person);
     res.json(person);
 });
 

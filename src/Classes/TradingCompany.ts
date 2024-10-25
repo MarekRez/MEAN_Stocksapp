@@ -1,22 +1,21 @@
 import {Person} from "./Person";
 
-export class Clients extends Person{
-    private clients: Person[];
+export class TradingCompany {
+    private clients: Person[] = [];
 
-    constructor(person: Person) {
-        super(person.getName(), person.getEmail())
-        this.clients = [];
+    public addClient(newClient:Person) {
+        this.clients.push(newClient);
+        return newClient;
     }
-
-    getClients(): Person[] {
+    public getClients() {
         return this.clients;
     }
 
-    getClient(id: number): Person | undefined {
-        return this.clients.find(client => client.() === id);
+    public getClientByEmail(email: string): Person | undefined {
+        return this.clients.find(client => client.getEmail() === email);
     }
 
-    deleteClient(id: number) {
+    public deleteClientByEmail(email: string) {
         this.clients = this.clients.filter(client => client.getId() !== id);
     }
 
