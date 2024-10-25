@@ -7,7 +7,7 @@
     "start:lecture-1": "node src/lecture-1.js",
     "start:javascript": "node src-lecture/javascript-lecture.js",
     "start:typescript": "ts-node src-lecture/typescript-lecture.ts",
-    "start:server": "ts-node src-lecture/server/index.ts"
+    "start:Server": "ts-node src/Server/Server.ts"
   },
   "repository": {
     "type": "git",
