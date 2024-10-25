@@ -23,6 +23,7 @@ app.post(`${API}/clients`, (req: Request, res: Response) => {
     if (req.body.firstName === undefined || req.body.lastName === undefined) {
         res.status(409);
         res.json({ error: 'Missing required fields' });
+        return;
     }
     const person = new Person(req.body.firstName, req.body.lastName);
     const id = bank.addClient(person);
@@ -34,6 +35,7 @@ app.get(`${API}/clients/:id`, (req: Request, res: Response) => {
     if (Number.isNaN(id)) {
         res.status(409);
         res.json({ error: 'Invalid id' });
+        return;
     }
 
     const client = bank.getClient(id);
@@ -41,6 +43,7 @@ app.get(`${API}/clients/:id`, (req: Request, res: Response) => {
     if (!client) {
         res.status(404);
         res.json({ error: 'Client not found' });
+        return;
     }
 
     res.json(client);
@@ -51,6 +54,7 @@ app.delete(`${API}/clients/:id`, (req: Request, res: Response) => {
     if (Number.isNaN(id)) {
         res.status(409);
         res.json({ error: 'Invalid id' });
+        return;
     }
 
     const client = bank.getClient(id);
@@ -58,6 +62,7 @@ app.delete(`${API}/clients/:id`, (req: Request, res: Response) => {
     if (!client) {
         res.status(404);
         res.json({ error: 'Client not found' });
+        return;
     }
 
     bank.deleteClient(id);
@@ -70,11 +75,13 @@ app.put(`${API}/clients/:id`, (req: Request, res: Response) => {
     if (Number.isNaN(id)) {
         res.status(409);
         res.json({ error: 'Invalid id' });
+        return;
     }
 
     if (req.body.firstName === undefined || req.body.lastName === undefined) {
         res.status(409);
         res.json({ error: 'Missing required fields' });
+        return;
     }
 
     const client = bank.updateClient(id, req.body.firstName, req.body.lastName);
@@ -82,6 +89,7 @@ app.put(`${API}/clients/:id`, (req: Request, res: Response) => {
     if (!client) {
         res.status(404);
         res.json({ error: 'Client not found' });
+        return;
     }
 
     res.json();
