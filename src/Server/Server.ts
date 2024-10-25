@@ -17,12 +17,12 @@ app.get('/', (req: Request, res: Response) => {
 
 const apple = new Stock(StockSymbol.AAPL, "USD", 150, 0.02, 0.6, 0.2);
 
-const bankAccount1 = new BankAccount(10000);
-const InvestmentAccount1 = new Account(0, bankAccount1);
-const Marek = new Person('Marek Rezny', 'rezny.marek@gmail.com', bankAccount1, InvestmentAccount1 );
+app.post(`${API}/persons`, (req: Request, res: Response) => {
 
-app.get(`${API}/persons`, (req: Request, res: Response) => {
-    res.json(bankAccount1.getBalance());
+    const bankAccount1 = new BankAccount(req.body.balance);
+    const InvestmentAccount1 = new Account(req.body.balance, bankAccount1);
+    const Marek = new Person(req.body.name, req.body.email, bankAccount1, InvestmentAccount1 );
+    res.json(Marek);
 });
 
 app.listen(port, () => {
