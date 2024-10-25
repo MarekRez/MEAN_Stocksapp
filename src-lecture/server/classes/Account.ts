@@ -1,5 +1,5 @@
-import {Person} from './Person';
 import {Transaction} from './Transaction';
+import {Person} from "../../../src/Classes/Person";
 
 export class Account {
     private owner: Person;
