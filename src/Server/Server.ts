@@ -19,10 +19,11 @@ const apple = new Stock(StockSymbol.AAPL, "USD", 150, 0.02, 0.6, 0.2);
 
 app.post(`${API}/persons`, (req: Request, res: Response) => {
 
-    const bankAccount1 = new BankAccount(req.body.balance);
-    const InvestmentAccount1 = new Account(req.body.balance, bankAccount1);
-    const Marek = new Person(req.body.name, req.body.email, bankAccount1, InvestmentAccount1 );
-    res.json(Marek);
+    const bankAccount = new BankAccount(req.body.bankAccountBalance);
+    const InvestmentAccount = new Account(req.body.investmentAccountBalance, bankAccount);
+    const person = new Person(req.body.name, req.body.email, bankAccount, InvestmentAccount );
+    clients.push(person);
+    res.json(person);
 });
 
 app.listen(port, () => {

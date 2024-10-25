@@ -14,6 +14,14 @@ export class Person {
         this.investmentAccount = investmentAccount;
     }
 
+    getName() {
+        return this.name;
+    }
+
+    getEmail() {
+        return this.email;
+    }
+
     // poslanie penazi z investicneho uctu na bankovy ucet
     public depositToBank(amount: number): void {
         if (amount <= this.investmentAccount.balance) {
