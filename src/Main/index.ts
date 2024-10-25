@@ -57,3 +57,41 @@ InvestmentAccount1.getInvestmentHistory().forEach(record => {
 
 // Ak zadáme simuláciu s parametrom false, tak vypíše konečný stav portfólia
 MarekPortfolio.simulateMonths(0, false); // 0 mesiacov znamená len zobraziť konečný stav
+
+
+import { CryptoEnum } from '../Classes/CryptoEnum';
+import { Crypto } from '../Classes/Crypto';
+import { CryptoAccount } from '../Classes/CryptoAccount';
+import { User } from '../Classes/User';
+
+
+const account = new CryptoAccount();
+
+
+const user = new User('Alice', account);
+
+
+console.log("--------Fiat deposit---------");
+user.getAccount().depositFiat(2000);
+
+
+console.log("\n----------Crypto buy Bitcoin----------");
+const bitcoin = new Crypto(CryptoEnum.Bitcoin);
+user.getAccount().buyCrypto(bitcoin, 0.05);
+
+
+console.log("\n--------Ethereum buy-----------");
+const ethereum = new Crypto(CryptoEnum.Ethereum);
+user.getAccount().buyCrypto(ethereum, 1);
+
+
+console.log("\n-------Check Balance-----------");
+user.getAccount().printBalances();
+
+
+console.log("\n=== Обмен биткоина на эфириум ===");
+user.getAccount().exchangeCrypto(bitcoin, ethereum, 0.01);
+
+
+console.log("\n---------Check Price---------");
+user.getAccount().printBalances();
