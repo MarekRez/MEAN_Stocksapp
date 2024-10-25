@@ -4,8 +4,8 @@
  *        This file is for lecture purposes only. All changes will be ignored.        *
  *                                                                                    *
  **************************************************************************************/
-import {Account} from './classes/Account';
-import {Person} from './classes/Person';
+import {Account} from './server/classes/Account';
+import {Person} from './server/classes/Person';
 
 const person1 = new Person('John', 'Doe');
 const person2 = new Person('Tomáš', 'Šromovský');
