@@ -12,11 +12,13 @@ export class TradingCompany {
     }
 
     public getClientByEmail(email: string): Person | undefined {
-        return this.clients.find(client => client.getEmail() === email);
+        return this.clients.find(client => client.email === email);
     }
 
-    public deleteClientByEmail(email: string) {
-        this.clients = this.clients.filter(client => client.getId() !== id);
+    public deleteClientByEmail(email: string){
+        const initialLength = this.clients.length;
+        this.clients = this.clients.filter(client => client.getEmail() !== email);
+        return this.clients.length < initialLength;
     }
 
     updateClient(id: number, firstName: string, lastName: string): Person | undefined {

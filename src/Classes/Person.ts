@@ -3,7 +3,7 @@ import { Account } from './Account';
 
 export class Person {
     private name: string;
-    private email: string;
+    public email: string;
     private bankAccount: BankAccount; // bankovy ucet
     private investmentAccount: Account; // investicny ucet
 
