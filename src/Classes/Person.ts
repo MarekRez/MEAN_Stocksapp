@@ -3,7 +3,7 @@ import { Account } from './Account';
 
 export class Person {
     private name: string;
-    public email: string;
+    private email: string;
     private bankAccount: BankAccount; // bankovy ucet
     private investmentAccount: Account; // investicny ucet
 
@@ -14,12 +14,30 @@ export class Person {
         this.investmentAccount = investmentAccount;
     }
 
-    getName() {
+    public getName() {
         return this.name;
     }
+    public setName(newName: string) {
+        this.name = newName;
+    }
 
-    getEmail() {
+    public getEmail() {
         return this.email;
+    }
+
+    public getBankAccount(): BankAccount {
+        return this.bankAccount;
+    }
+
+    public setBankAccount(newBankAccount: BankAccount) {
+        this.bankAccount = newBankAccount;
+    }
+
+    public getInvestmentAccount(): Account {
+        return this.investmentAccount;
+    }
+    public setInvestmentAccount(newInvestmentAccount: Account) {
+        this.investmentAccount = newInvestmentAccount;
     }
 
     // poslanie penazi z investicneho uctu na bankovy ucet
