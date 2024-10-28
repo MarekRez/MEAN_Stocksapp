@@ -14,8 +14,9 @@ export class Account {
     }
 
     // metoda na investovanie do akcie
-    public investInStock(stock: Stock, investmentAmount: number): void {
+    public investInStock(stock: Stock, investmentAmount: number): boolean {
         const sharesToBuy = Math.floor(investmentAmount / stock.stockPrice);
+        const leftover = investmentAmount - sharesToBuy * stock.stockPrice;
         if (sharesToBuy > 0) {
             const totalInvestment = sharesToBuy * stock.stockPrice;
 
@@ -27,12 +28,15 @@ export class Account {
 
                 stock.totalShares += sharesToBuy;
 
-                console.log(`Invested ${totalInvestment.toFixed(2)} in ${sharesToBuy} shares of ${stock.name} at ${stock.stockPrice.toFixed(2)} each. New balance: ${this.balance.toFixed(2)}`);
+                console.log(`Invested ${totalInvestment.toFixed(2)} (${leftover} was unused) in ${sharesToBuy} shares of ${stock.name} at ${stock.stockPrice.toFixed(2)} each. New balance: ${this.balance.toFixed(2)}`);
+                return true;
             } else {
                 console.log(`Investment failed: Insufficient funds to buy shares. Required: ${totalInvestment.toFixed(2)}, Available: ${this.balance.toFixed(2)}`);
+                return false;
             }
         } else {
             console.log(`Investment failed: Insufficient funds to buy shares.`);
+            return false;
         }
     }
 
@@ -41,6 +45,7 @@ export class Account {
         const sharesAvailable = stock.totalShares;
 
         const sharesToSell = Math.floor(amountToWithdraw / stock.stockPrice);
+        const leftover = amountToWithdraw - sharesToSell * stock.stockPrice;
 
         if (sharesToSell <= sharesAvailable) {
             const cashReceived = sharesToSell * stock.stockPrice;
@@ -50,7 +55,7 @@ export class Account {
             const investmentRecord = new InvestmentRecord(stock, sharesToSell, stock.stockPrice, "sell");
             this.investmentHistory.push(investmentRecord);
 
-            console.log(`Sold ${sharesToSell} shares of ${stock.name} for ${cashReceived.toFixed(2)}. New balance: ${this.balance.toFixed(2)}`);
+            console.log(`Sold ${sharesToSell} (${leftover} was unused) shares of ${stock.name} for ${cashReceived.toFixed(2)}. New balance: ${this.balance.toFixed(2)}`);
         } else {
             console.log(`Withdrawal failed: Not enough shares to sell. Available shares: ${sharesAvailable}`);
         }

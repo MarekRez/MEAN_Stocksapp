@@ -103,7 +103,7 @@ app.put(`${API}/clients/:email`, (req: Request, res: Response) => {
     if (updatedName) updatedFields.name = updatedName;
     if (updatedBankAccountBalance !== undefined) updatedFields.bankAccount = new BankAccount(updatedBankAccountBalance);
     if (updatedInvestmentAccountBalance !== undefined) {
-        updatedFields.investmentAccount = new Account(updatedInvestmentAccountBalance, new BankAccount(0));
+        updatedFields.investmentAccount = new Account(updatedInvestmentAccountBalance, new BankAccount(updatedBankAccountBalance));
     }
 
     const client = clients.updateClientByEmail(email, updatedFields);
@@ -117,6 +117,50 @@ app.put(`${API}/clients/:email`, (req: Request, res: Response) => {
     res.json(client);
     });
 
+// POST - investovanie do akcie
+app.post(`${API}/clients/:email/invest`, (req: Request, res: Response) => {
+    const email = req.params.email;
+    const { stockSymbol, currency, stockPrice, dividendYield, volatility, expectedReturn, amount } = req.body;
+
+    // validacia inputu
+    if (!stockSymbol || typeof amount !== 'number' || amount <= 0) {
+        res.status(409);
+        res.json({ error: 'Invalid stock symbol or amount' });
+        return;
+    }
+
+    const client = clients.getClientByEmail(email);
+    if (!client) {
+        res.status(404);
+        res.json({ error: 'Client not found' });
+        return;
+    }
+
+    // vytvorime danu akciu
+    const stock = new Stock(stockSymbol as StockSymbol, currency, stockPrice, dividendYield, volatility, expectedReturn);
+    if (!stock) {
+        res.status(404);
+        res.json({ error: 'Stock not found' });
+        return;
+    }
+
+    // pristupenie cez Person k Account a investovanie a nalsedne vratenie hodnoty true or false
+    const investmentSuccess = client.getInvestmentAccount().investInStock(stock, amount);
+
+    if (investmentSuccess) {
+        res.json({
+            message: `Invested ${amount} in ${stockSymbol}`,
+            balance: client.getInvestmentAccount().balance,
+            stock: {
+                symbol: stockSymbol,
+                shares: stock.totalShares,
+                stockPrice: stock.stockPrice,
+            },
+        });
+    } else {
+        res.status(400).json({ error: 'Investment failed: Insufficient balance or unable to buy shares' });
+    }
+});
 
 app.listen(port, () => {
     console.log(`Server is WORKING at http://localhost:${port}/`);
