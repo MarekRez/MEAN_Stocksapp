@@ -5,6 +5,7 @@ import {Person} from "../Classes/Person";
 import {Stock} from "../Classes/Stock";
 import {StockSymbol} from "../Enums/StockSymbol";
 import {TradingCompany} from "../Classes/TradingCompany";
+import {Portfolio} from "../Classes/Portfolio";
 
 const app = express();
 const port = 3000;
@@ -19,7 +20,6 @@ app.get('/', (req: Request, res: Response) => {
 // ----------------------------------------------------------------------
 
 const clients = new TradingCompany()
-const apple = new Stock(StockSymbol.AAPL, "USD", 150, 0.02, 0.6, 0.2);
 
 // GET - dones zoznam klientov
 app.get(`${API}/clients`, (req: Request, res: Response) => {
@@ -145,12 +145,13 @@ app.post(`${API}/clients/:email/invest`, (req: Request, res: Response) => {
     }
 
     // pristupenie cez Person k Account a investovanie a nalsedne vratenie hodnoty true or false
-    const investmentSuccess = client.getInvestmentAccount().investInStock(stock, amount);
+    const { success, leftover } = client.getInvestmentAccount().investInStock(stock, amount);
 
-    if (investmentSuccess) {
+    if (success) {
         res.json({
-            message: `Invested ${amount} in ${stockSymbol}`,
+            message: `Invested ${amount - leftover} (${leftover} was unused) in shares of ${stockSymbol}`,
             balance: client.getInvestmentAccount().balance,
+            leftover: leftover.toFixed(2),
             stock: {
                 symbol: stockSymbol,
                 shares: stock.totalShares,
@@ -158,8 +159,45 @@ app.post(`${API}/clients/:email/invest`, (req: Request, res: Response) => {
             },
         });
     } else {
-        res.status(400).json({ error: 'Investment failed: Insufficient balance or unable to buy shares' });
+        res.status(400).json({
+            error: 'Investment failed: Insufficient balance or unable to buy shares',
+            leftover: client.getInvestmentAccount().balance.toFixed(2),
+        });
     }
+});
+
+//
+app.post(`${API}/portfolio`, (req: Request, res: Response): void => {
+    const { stocks, months, showInfo } = req.body;
+
+    // kontrola vstupov
+    if (!Array.isArray(stocks) || typeof months !== 'number' || months <= 0) {
+        res.status(400).json({ error: 'Invalid input: stocks should be an array and months should be a positive number' });
+        return;
+    }
+    const portfolio = new Portfolio();
+
+    stocks.forEach((stockData) => {
+        const { symbol, currency, price, dividendYield, volatility, expectedReturn, totalShares } = stockData;
+        const stock = new Stock(symbol as StockSymbol, currency, price, dividendYield, volatility, expectedReturn, totalShares);
+        portfolio.addStock(stock);
+    });
+
+    let simulationResults: any[] = [];
+    console.log = (output) => simulationResults.push(output);
+
+    portfolio.simulateMonths(months, showInfo);
+
+    if (!showInfo) { // ak nechceme cely vypis
+        simulationResults = []; // zmazanie logov novym prazdnym polom
+    }
+
+    portfolio.showFinalBalance();
+
+    res.json({
+        message: `Simulated portfolio over ${months} months`,
+        details: simulationResults,
+    });
 });
 
 app.listen(port, () => {

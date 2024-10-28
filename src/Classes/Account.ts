@@ -14,7 +14,7 @@ export class Account {
     }
 
     // metoda na investovanie do akcie
-    public investInStock(stock: Stock, investmentAmount: number): boolean {
+    public investInStock(stock: Stock, investmentAmount: number): { success: boolean; leftover: number } {
         const sharesToBuy = Math.floor(investmentAmount / stock.stockPrice);
         const leftover = investmentAmount - sharesToBuy * stock.stockPrice;
         if (sharesToBuy > 0) {
@@ -29,14 +29,14 @@ export class Account {
                 stock.totalShares += sharesToBuy;
 
                 console.log(`Invested ${totalInvestment.toFixed(2)} (${leftover} was unused) in ${sharesToBuy} shares of ${stock.name} at ${stock.stockPrice.toFixed(2)} each. New balance: ${this.balance.toFixed(2)}`);
-                return true;
+                return { success: true, leftover };
             } else {
                 console.log(`Investment failed: Insufficient funds to buy shares. Required: ${totalInvestment.toFixed(2)}, Available: ${this.balance.toFixed(2)}`);
-                return false;
+                return { success: false, leftover: investmentAmount }; // zbytok je cela ciastka
             }
         } else {
             console.log(`Investment failed: Insufficient funds to buy shares.`);
-            return false;
+            return { success: false, leftover: investmentAmount }; // zbytok je cela ciastka
         }
     }
 

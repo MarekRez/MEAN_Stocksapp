@@ -1,7 +1,7 @@
 import { Stock } from './Stock';
 
 export class Portfolio {
-    private stocks: Stock[] = [];
+    public stocks: Stock[] = [];
 
     public addStock(stock: Stock): void {
         this.stocks.push(stock); // pridanie akcie do zoznamu akcii v portfoliu
@@ -48,7 +48,7 @@ export class Portfolio {
     }
 
     // finalny balance za vsetky mesiace dokopy
-    private showFinalBalance(): void {
+    public showFinalBalance(): void {
         console.log(`\n--- Final Portfolio Summary ---`);
 
         let totalBalance = 0;
