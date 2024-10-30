@@ -13,7 +13,7 @@ const API = '/api';
 
 app.use(express.json());
 
-app.get('/', (res: Response) => {
+app.get('/', (req: Request, res: Response) => {
     res.send("Hello, this is Marek's website 🚀!");
 });
 
@@ -22,7 +22,7 @@ app.get('/', (res: Response) => {
 const clients = new TradingCompany()
 
 // GET - dones zoznam klientov
-app.get(`${API}/clients`, (res: Response) => {
+app.get(`${API}/clients`, (req: Request, res: Response) => {
     res.json(clients.getAllClients());
 });
 
