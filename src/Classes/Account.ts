@@ -4,7 +4,7 @@ import {BankAccount} from "./BankAccount";
 
 export class Account {
     private stocks: Stock[] = []; // pole akcii Stock
-    public balance: number;
+    private balance: number;
     private investmentHistory: InvestmentRecord[] = []; // historia akcii
     private bankAccount: BankAccount; //
 
@@ -23,15 +23,20 @@ export class Account {
             if (totalInvestment <= this.balance) {
                 this.balance -= totalInvestment;
 
+                const existingStock = this.stocks.find(s => s.name === stock.name);
+
+                if (existingStock) {
+                    existingStock.totalShares += sharesToBuy;
+                } else {
+                    stock.totalShares = sharesToBuy;
+                    this.stocks.push(stock);
+                }
+
                 const investmentRecord = new InvestmentRecord(stock, sharesToBuy, stock.stockPrice, "buy");
                 this.investmentHistory.push(investmentRecord);
 
-                stock.totalShares += sharesToBuy;
-
-                console.log(`Invested ${totalInvestment.toFixed(2)} (${leftover} was unused) in ${sharesToBuy} shares of ${stock.name} at ${stock.stockPrice.toFixed(2)} each. New balance: ${this.balance.toFixed(2)}`);
                 return { success: true, leftover };
             } else {
-                console.log(`Investment failed: Insufficient funds to buy shares. Required: ${totalInvestment.toFixed(2)}, Available: ${this.balance.toFixed(2)}`);
                 return { success: false, leftover: investmentAmount }; // zbytok je cela ciastka
             }
         } else {
@@ -40,10 +45,11 @@ export class Account {
         }
     }
 
-    //
-    public withdrawFromStock(stock: Stock, amountToWithdraw: number): void {
+    //metoda na vybranie z akcie
+    public withdrawFromStock(stock: Stock, amountToWithdraw: number): { success: boolean, message: string } {
         const sharesAvailable = stock.totalShares;
 
+        // Vypocita pocet akcii na predaj a zostavajucu sumu
         const sharesToSell = Math.floor(amountToWithdraw / stock.stockPrice);
         const leftover = amountToWithdraw - sharesToSell * stock.stockPrice;
 
@@ -52,17 +58,37 @@ export class Account {
             stock.totalShares -= sharesToSell;
             this.balance += cashReceived;
 
+            // Zaznamena transakciu do investicneho zaznamu
             const investmentRecord = new InvestmentRecord(stock, sharesToSell, stock.stockPrice, "sell");
             this.investmentHistory.push(investmentRecord);
 
-            console.log(`Sold ${sharesToSell} (${leftover} was unused) shares of ${stock.name} for ${cashReceived.toFixed(2)}. New balance: ${this.balance.toFixed(2)}`);
+            // Odstrani akciu, ak uz nemame ziadne podiely
+            if (stock.totalShares === 0) {
+                this.stocks = this.stocks.filter(s => s.name !== stock.name);
+            }
+
+            // Vrati spravu s informaciou o predaji a zostavajucou sumou
+            return {
+                success: true,
+                message: `Sold ${sharesToSell} shares of ${stock.name} for ${cashReceived.toFixed(2)}. Leftover: ${leftover.toFixed(2)}. New balance: ${this.balance.toFixed(2)}`
+            };
         } else {
-            console.log(`Withdrawal failed: Not enough shares to sell. Available shares: ${sharesAvailable}`);
+            return {
+                success: false,
+                message: `Not enough shares to sell. Available shares: ${sharesAvailable}`
+            };
         }
-}
+    }
 
     public getInvestmentHistory(): InvestmentRecord[] {
         return this.investmentHistory;
+    }
+
+    public getStocks(): Stock[] {
+        return this.stocks;
+    }
+    public getBalance(): number {
+        return this.balance;
     }
 
     // dat peniaze do investicneho uctu

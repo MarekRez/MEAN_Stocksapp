@@ -150,7 +150,7 @@ app.post(`${API}/clients/:email/invest`, (req: Request, res: Response) => {
     if (success) {
         res.json({
             message: `Invested ${amount - leftover} (${leftover} was unused) in shares of ${stockSymbol}`,
-            balance: client.getInvestmentAccount().balance,
+            balance: client.getInvestmentAccount().getBalance(),
             leftover: leftover.toFixed(2),
             stock: {
                 symbol: stockSymbol,
@@ -161,12 +161,63 @@ app.post(`${API}/clients/:email/invest`, (req: Request, res: Response) => {
     } else {
         res.status(400).json({
             error: 'Investment failed: Insufficient balance or unable to buy shares',
-            leftover: client.getInvestmentAccount().balance.toFixed(2),
+            leftover: client.getInvestmentAccount().getBalance().toFixed(2),
         });
     }
 });
 
-//
+// POST - vytiahnutie penazi z akcie
+app.post('/api/clients/:email/sell', (req: Request, res: Response): void => {
+    const email: string = req.params.email;
+    const { stockSymbol, sharesToSell } = req.body;
+
+    if (!stockSymbol || typeof sharesToSell !== 'number' || sharesToSell <= 0) {
+        res.status(400).json({ error: 'Invalid input: Provide stockSymbol and positive number of sharesToSell' });
+        return;
+    }
+
+    const client = clients.getClientByEmail(email);
+    if (!client) {
+        res.status(404).json({ error: 'Client not found' });
+        return;
+    }
+
+    const investmentAccount = client.getInvestmentAccount();
+    if (!investmentAccount) {
+        res.status(400).json({ error: 'Investment account not found for client' });
+        return;
+    }
+
+    // najdeme akciu v portfoliu
+    const investedStock = investmentAccount.getStocks().find(s => s.name === stockSymbol);
+
+    if (!investedStock) {
+        res.status(404).json({ error: `Stock ${stockSymbol} not found in portfolio` });
+        return;
+    }
+
+    const amountToWithdraw = sharesToSell * investedStock.stockPrice;
+
+    // pokusime sa vybrat peniaze z akcie
+    const result = investmentAccount.withdrawFromStock(investedStock, amountToWithdraw);
+    if (!result.success) {
+        res.status(400).json({ error: result.message });
+        return;
+    }
+
+    // odosleme spravu o uspesnom predaji
+    res.json({
+        message: `Sold ${sharesToSell} shares of ${stockSymbol}`,
+        balance: investmentAccount.getBalance().toFixed(2),
+        stock: {
+            symbol: stockSymbol,
+            remainingShares: investedStock.totalShares,
+            stockPrice: investedStock.stockPrice
+        }
+    });
+});
+
+// POST - simulovanie portfolia s akciami pocas mesiacov
 app.post(`${API}/portfolio`, (req: Request, res: Response): void => {
     const { stocks, months, showInfo } = req.body;
 
@@ -177,12 +228,13 @@ app.post(`${API}/portfolio`, (req: Request, res: Response): void => {
     }
     const portfolio = new Portfolio();
 
+    // pridanie akcii do portfolia
     stocks.forEach((stockData) => {
         const { symbol, currency, price, dividendYield, volatility, expectedReturn, totalShares } = stockData;
         const stock = new Stock(symbol as StockSymbol, currency, price, dividendYield, volatility, expectedReturn, totalShares);
         portfolio.addStock(stock);
     });
-
+    // nastavenie konzolovych vypisov do pola simulationResults
     let simulationResults: any[] = [];
     console.log = (output) => simulationResults.push(output);
 
@@ -199,6 +251,7 @@ app.post(`${API}/portfolio`, (req: Request, res: Response): void => {
         details: simulationResults,
     });
 });
+
 
 app.listen(port, () => {
     console.log(`Server is WORKING at http://localhost:${port}/`);
