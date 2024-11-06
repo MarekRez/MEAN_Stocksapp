@@ -7,7 +7,8 @@
     "start:lecture-1": "node src/lecture-1.js",
     "start:javascript": "node src-lecture/javascript-lecture.js",
     "start:typescript": "ts-node src-lecture/typescript-lecture.ts",
-    "start:server": "ts-node src-lecture/server/index.ts"
+    "start:server": "ts-node src-lecture/server/index.ts",
+    "build:styles": "sass src-lecture/styles.scss src-lecture/styles.css"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,8 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "express": "^4.21.1"
+    "bootstrap": "^5.3.3",
+    "express": "^4.21.1",
+    "sass": "^1.80.6"
   }
 }
