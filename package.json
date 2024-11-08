@@ -8,8 +8,8 @@
     "start:javascript": "node src-lecture/javascript-lecture.js",
     "start:typescript": "ts-node src-lecture/typescript-lecture.ts",
     "start:lecture-server": "ts-node src-lecture/server/index.ts",
-    "start:Server": "ts-node src/Server/Server.ts"
-    "build:styles": "sass src-lecture/styles.scss src-lecture/styles.css"
+    "start:Server": "ts-node src/Server/Server.ts",
+    "build:styles": "sass src/Templates/styles.scss src/Templates/styles.css"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FHI Online Banking</title>
+    <link rel="icon" href="./favicon.ico">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-warning shadow">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src=./favicon.ico alt="Bootstrap" width="30" height="24">
+        </a>
+    </div>
+    <div class="container">
+        <a class="navbar-brand" href="#">Stocks</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Pridať klienta</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Zoznam klientov</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container pt-3">
+    <h1>Pridať klienta</h1>
+    <div class="card shadow-lg bg-success">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label">Meno</label>
+                        <input class="form-control" id="firstName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Email</label>
+                        <input class="form-control" id="lastName">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="IBAN" class="form-label">IBAN</label>
+                        <input class="form-control" id="IBAN">
+                    </div>
+                    <div class="mb-3">
+                        <label for="country" class="form-label">Peniaze</label>
+                        <input class="form-control" id="country">
+                </div>
+            </div>
+        </div>
+
+        <div class="row p-3">
+            <div class="col col-md-auto">
+                <button type="button" class="btn btn-dark w-100">Odoslať</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<script src="../../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+<script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
