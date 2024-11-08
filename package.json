@@ -9,6 +9,7 @@
     "start:typescript": "ts-node src-lecture/typescript-lecture.ts",
     "start:lecture-server": "ts-node src-lecture/server/index.ts",
     "start:Server": "ts-node src/Server/Server.ts"
+    "build:styles": "sass src-lecture/styles.scss src-lecture/styles.css"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,9 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "express": "^4.21.1"
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3",
+    "express": "^4.21.1",
+    "sass": "^1.80.6"
   }
 }
