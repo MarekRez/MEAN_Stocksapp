@@ -9,22 +9,67 @@
 </head>
 <body>
 
-<!-- Button to Open Modal -->
-<button type="button" class="btn btn-info mt-5" data-bs-toggle="modal" data-bs-target="#simulationModal">
-  View Portfolio Simulation
-</button>
+<div class="container d-flex  justify-content-center min-vh-100">
+  <div class="card shadow-lg text-bg-secondary p-4 w-100" style="max-width: 600px;">
+    <div class="card-body">
+      <h2 class="text-center mb-4">Portfolio Simulation</h2>
+      <form id="simulationForm">
+        <div class="mb-3">
+          <label for="stockSymbol" class="form-label">Stock Symbol</label>
+          <input type="text" id="stockSymbol" class="form-control" placeholder="AAPL" required>
+        </div>
 
-<!-- Modal -->
-<div class="modal fade" id="simulationModal" tabindex="-1" aria-labelledby="simulationModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+        <div class="mb-3">
+          <label for="currency" class="form-label">Currency</label>
+          <input type="text" id="currency" class="form-control" placeholder="USD" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="stockPrice" class="form-label">Stock Price</label>
+          <input type="number" id="stockPrice" class="form-control" placeholder="150" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="dividendYield" class="form-label">Dividend Yield</label>
+          <input type="number" step="0.10" id="dividendYield" class="form-control" min="0.1" max="1" placeholder="0.02" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="volatility" class="form-label">Volatility</label>
+          <input type="number" step="0.10" id="volatility" class="form-control" min="0.1" max="1" placeholder="0.2" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="expectedReturn" class="form-label">Expected Return</label>
+          <input type="number" step="0.10" id="expectedReturn" class="form-control" max="1" placeholder="0.08" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="shares" class="form-label">Number of Shares</label>
+          <input type="number" id="shares" class="form-control" min="1" placeholder="10" required>
+        </div>
+
+        <div class="text-center">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#resultModal">Run Simulation</button>
+        </div>
+        </div>
+      </form>
+  </div>
+</div>
+
+<div class="modal fade" id="resultModal" aria-labelledby="resultModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="simulationModalLabel">Portfolio Simulation</h5>
+        <h3 class="modal-title" id="resultModalLabel">Simulation Result</h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Portfolio simulation results displayed here.</p>
-        <!-- Dynamically load simulation results into this section -->
+        <p id="simulationResult">Simulation results will appear here...</p>
+        <p> Simulation results will appear here...</p>
+        <p> Simulation results will appear here...</p>
+        <p> Simulation results will appear here...</p>
+        <p> Simulation results will appear here...</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -32,6 +77,8 @@
     </div>
   </div>
 </div>
+
+
 
 <script src="../../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
