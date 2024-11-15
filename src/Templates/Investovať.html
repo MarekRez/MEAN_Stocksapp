@@ -9,6 +9,30 @@
 </head>
 <body>
 
+<!-- Button to Open Modal -->
+<button type="button" class="btn btn-info mt-5" data-bs-toggle="modal" data-bs-target="#simulationModal">
+  View Portfolio Simulation
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="simulationModal" tabindex="-1" aria-labelledby="simulationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="simulationModalLabel">Portfolio Simulation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Portfolio simulation results displayed here.</p>
+        <!-- Dynamically load simulation results into this section -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="../../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
