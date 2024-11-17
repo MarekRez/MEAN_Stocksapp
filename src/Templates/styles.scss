@@ -2,6 +2,18 @@
 $body-bg: #105da8;
 $input-bg: #dfd482;
 $font-family-base: 'sans-serif';
-$card
+$placeholder-opacity-max: 0.1;
+$input-placeholder-color: #7aa0c1;
+
+// Navbar customizations
+//$navbar-light-color: #000000; // Text color for navbar items
+$navbar-light-hover-color: #e11212; // Hover color for navbar items
+$navbar-light-active-color: #031dc1; // Active color for navbar items
+
+// Card customizations
+$card-border-color: #105da8; // Border color of the card
+$card-border-radius: 10px; // Rounded corners for cards
+$card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Shadow effect
+
 // Import Bootstrap
 @import "../../node_modules/bootstrap/scss/bootstrap";

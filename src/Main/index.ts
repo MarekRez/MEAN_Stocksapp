@@ -23,7 +23,7 @@ const Marek = new Person('Marek Rezny', 'rezny.marek@gmail.com', bankAccount1, I
 InvestmentAccount1.deposit(8000); // pridanie 6000 na investicny ucet
 Marek.depositToBank(2000); // vratenie 2000 naspat na bankovy ucet
 console.log(`Bank Account Balance: ${bankAccount1.getBalance()}`);
-console.log(`Investment Account Balance: ${InvestmentAccount1.balance}`);
+console.log(`Investment Account Balance: ${InvestmentAccount1.getBalance()}`);
 
 // ivestujeme do akcii
 InvestmentAccount1.investInStock(apple, 1000); //
@@ -31,7 +31,7 @@ InvestmentAccount1.investInStock(google, 3000);
 InvestmentAccount1.investInStock(tesla, 2000);
 
 // balance po investovani na investicnom ucte
-console.log(`\nAccount Balance after Investments: ${InvestmentAccount1.balance.toFixed(2)} USD`);
+console.log(`\nAccount Balance after Investments: ${InvestmentAccount1.getBalance().toFixed(2)} USD`);
 
 // spravime portoflio a pridame tam akcie
 const MarekPortfolio = new Portfolio();
@@ -47,7 +47,7 @@ InvestmentAccount1.withdrawFromStock(apple, 500);
 InvestmentAccount1.withdrawFromStock(google, 2000);
 
 // balance invest. uctu
-console.log(`\nAccount Balance after Withdrawals: ${InvestmentAccount1.balance.toFixed(2)} USD`);
+console.log(`\nAccount Balance after Withdrawals: ${InvestmentAccount1.getBalance().toFixed(2)} USD`);
 
 // investicna historia
 console.log("\nInvestment History:");

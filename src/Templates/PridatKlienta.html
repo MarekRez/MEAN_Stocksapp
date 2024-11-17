@@ -8,61 +8,66 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+
 <nav class="navbar navbar-expand-md bg-warning shadow">
     <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src=./favicon.ico alt="Bootstrap" width="30" height="24">
+        <a class="navbar-brand d-flex align-items-center" href="HomePage.html">
+            <img src="./favicon.ico" alt="Bootstrap" width="30" height="24" class="me-3">
+            <span>Stocks</span>
         </a>
-    </div>
-    <div class="container">
-        <a class="navbar-brand" href="#">Stocks</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Pridať klienta</a>
+                    <a class="nav-link active" aria-current="page" href="PridatKlienta.html">Pridať klienta</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Zoznam klientov</a>
+                    <a class="nav-link" href="ZoznamKlientov.html">Zoznam klientov</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Portfolio.html">Portfolio Simulácia</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="container pt-3">
-    <h1>Pridať klienta</h1>
-    <div class="card shadow-lg bg-success">
+<div class="container pt-5">
+    <div class="card shadow-lg text-bg-secondary">
+        <h2 class="mb-4 mt-3 ms-3 text-black fw-bold">Add client</h2>
         <div class="card-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label for="firstName" class="form-label">Meno</label>
-                        <input class="form-control" id="firstName">
+            <form id="ClientForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="Name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="Name" placeholder="Marek Rezny" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Email" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="Email" placeholder="rezny.marek@gmail.com" required>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="lastName" class="form-label">Email</label>
-                        <input class="form-control" id="lastName">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="bankAccountBalance" class="form-label">Bank Account Balance</label>
+                            <input type="number" class="form-control" id="bankAccountBalance" placeholder="4000" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="investmentAccountBalance" class="form-label">Investment Account Balance</label>
+                            <input type="number" class="form-control" id="investmentAccountBalance" placeholder="2000" required>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label for="IBAN" class="form-label">IBAN</label>
-                        <input class="form-control" id="IBAN">
-                    </div>
-                    <div class="mb-3">
-                        <label for="country" class="form-label">Peniaze</label>
-                        <input class="form-control" id="country">
                 </div>
             </div>
-        </div>
 
-        <div class="row p-3">
-            <div class="col col-md-auto">
-                <button type="button" class="btn btn-dark w-100">Odoslať</button>
+            <div class="row p-3">
+                <div class="col col-md-auto">
+                    <button type="submit" class="btn btn-dark w-100" title="Add client to the database!" data-bs-toggle="tooltip">Send</button>
+                </div>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -70,5 +75,6 @@
 
 <script src="../../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
 </body>
 </html>
