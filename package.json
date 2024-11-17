@@ -8,6 +8,7 @@
     "start:javascript": "node src-lecture/javascript-lecture.js",
     "start:typescript": "ts-node src-lecture/typescript-lecture.ts",
     "start:server": "ts-node src-lecture/server/index.ts",
+    "start:client": "cd src-lecture/client && npm start",
     "build:styles": "sass src-lecture/styles.scss src-lecture/styles.css"
   },
   "repository": {
