@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FHI Online Banking</title>
+  <title>StocksByMarek</title>
   <link rel="icon" href="./favicon.ico">
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -31,6 +31,7 @@
             <a class="nav-link active" href="Portfolio.html">Portfolio Simulácia</a>
           </li>
         </ul>
+        <button class="btn btn-primary btn-outline-dark ms-auto" id="themeToggle" title="Switch light mode vs dark mode!"> Switch Mode</button>
       </div>
     </div>
   </nav>
@@ -115,6 +116,17 @@
     </div>
   </div>
 </div>
+
+<script>
+  const themeToggle = document.getElementById('themeToggle');
+  const htmlElement = document.documentElement;
+
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = htmlElement.getAttribute('data-bs-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    htmlElement.setAttribute('data-bs-theme', newTheme);
+  });
+</script>
 
 <script src="../../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

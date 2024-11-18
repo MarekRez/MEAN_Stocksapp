@@ -1,16 +1,48 @@
 // Override Bootstrap variables
 $body-bg: #105da8;
 $input-bg: #dfd482;
+$success: #dfd482;
 $font-family-base: 'sans-serif';
 $placeholder-opacity-max: 0.1;
 $input-placeholder-color: #7aa0c1;
+$warning: #bd851d;
 
-// Navbar customizations
-//$navbar-light-color: #000000; // Text color for navbar items
-$navbar-light-hover-color: #e11212; // Hover color for navbar items
+$body-color-dark: #07baba;
+$body-bg-dark: #010032;
+
+// these dont work for some reason
+$navbar-dark-color: #ffffff;
+$navbar-dark-hover-color: #e11212;
+$navbar-dark-active-color: #ffee22;
+$navbar-dark-bg: #f64a62;
+
+//
+$table-striped-bg: #bd851d;
+$table-bg: #dfd482;
+$table-hover-bg: #105195;
+$table-border-color: #105195;
+$table-border-width: 2px;
+$table-border-factor: 0.5;
+
+$carousel-transition-duration: 1s;
+$carousel-dark-caption-color: #ffffff;
+
+#stocksCarousel {
+  max-width: 1400px;  // Cap the entire carousel width
+  margin: 0 auto;     // Center the carousel horizontally
+
+  .carousel-item img {
+    width: 100%;       // Image spans the container width
+    max-height: 600px; // Cap image height
+    object-fit: cover; // Crop nicely without distortion
+  }
+}
+
+// Navbar
+$navbar-light-hover-color: #ffd800; // Hover color for navbar items
 $navbar-light-active-color: #031dc1; // Active color for navbar items
 
-// Card customizations
+// Card
 $card-border-color: #105da8; // Border color of the card
 $card-border-radius: 10px; // Rounded corners for cards
 $card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Shadow effect

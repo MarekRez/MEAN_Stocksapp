@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FHI Online Banking</title>
+  <title>StocksByMarek</title>
   <link rel="icon" href="./favicon.ico">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 
-<nav class="navbar navbar-expand-md bg-warning shadow">
+<nav class="navbar navbar-expand-md bg-warning shadow ">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" href="HomePage.html" aria-current="page">
       <img src="./favicon.ico" alt="Stock.image" width="30" height="24" class="me-3">
-      <span>Stocks.sk</span>
+      <span>Stocks</span>
     </a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
@@ -30,10 +32,69 @@
           <a class="nav-link" href="Portfolio.html">Portfolio Simulácia</a>
         </li>
       </ul>
+      <button class="btn btn-primary btn-outline-dark ms-auto" id="themeToggle" title="Switch light mode vs dark mode!"> Switch Mode</button>
     </div>
   </div>
 </nav>
 
+<div class="container mt-4 mb-3">
+  <div class="card bg-secondary-subtle shadow-lg">
+    <div class="card-body p-4">
+  <h1>StocksByMarek</h1>
+  <p>Welcome to StocksByMarek! This is a simple web application that allows you to manage your clients, their investments, and simulate stock trading. Use the navigation bar to get started!</p>
+</div>
+  </div>
+</div>
+
+<div id="stocksCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#stocksCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#stocksCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#stocksCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="Stocks.jpg" class="d-block w-100" alt="Stock Market Insights">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Stock Market Insights</h5>
+        <p>Get real-time updates on stock market trends.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="Stocks1.jpg" class="d-block w-100" alt="Client Management">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Client Management</h5>
+        <p>Effortlessly manage your clients' portfolios.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="Stocks2.jpg" class="d-block w-100" alt="Portfolio Simulation">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Portfolio Simulation</h5>
+        <p>Simulate portfolio performance with accuracy.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#stocksCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#stocksCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<script>
+  const themeToggle = document.getElementById('themeToggle');
+  const htmlElement = document.documentElement;
+
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = htmlElement.getAttribute('data-bs-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    htmlElement.setAttribute('data-bs-theme', newTheme);
+  });
+</script>
 
 <script src="../../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
