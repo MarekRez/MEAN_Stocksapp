@@ -1,4 +1,8 @@
 @charset "UTF-8";
+.navbar .nav-link {
+  font-weight: bold;
+}
+
 #stocksCarousel {
   max-width: 1400px;
   margin: 0 auto;
@@ -7,6 +11,29 @@
   width: 100%;
   max-height: 600px;
   object-fit: cover;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+[data-bs-theme=light] body {
+  background: linear-gradient(270deg, #0c59cd, #0ae3f8, #040a4c);
+  background-size: 300% 300%;
+  animation: gradientShift 10s ease infinite;
+}
+
+[data-bs-theme=dark] body {
+  background: linear-gradient(270deg, #515151, rgb(30, 14, 14), #111111);
+  background-size: 300% 300%;
+  animation: gradientShift 10s ease infinite;
 }
 
 /*!
@@ -1863,15 +1890,15 @@ progress {
   --bs-table-bg-type: initial;
   --bs-table-color-state: initial;
   --bs-table-bg-state: initial;
-  --bs-table-color: var(--bs-emphasis-color);
+  --bs-table-color: #090043;
   --bs-table-bg: #dfd482;
   --bs-table-border-color: #105195;
   --bs-table-accent-bg: transparent;
-  --bs-table-striped-color: var(--bs-emphasis-color);
+  --bs-table-striped-color: #090043;
   --bs-table-striped-bg: #bd851d;
-  --bs-table-active-color: var(--bs-emphasis-color);
+  --bs-table-active-color: #090043;
   --bs-table-active-bg: rgba(var(--bs-emphasis-color-rgb), 0.1);
-  --bs-table-hover-color: var(--bs-emphasis-color);
+  --bs-table-hover-color: #090043;
   --bs-table-hover-bg: #105195;
   width: 100%;
   margin-bottom: 1rem;
@@ -3880,9 +3907,9 @@ textarea.form-control-lg {
   --bs-navbar-hover-color: #ffd800;
   --bs-navbar-disabled-color: rgba(var(--bs-emphasis-color-rgb), 0.3);
   --bs-navbar-active-color: #031dc1;
-  --bs-navbar-brand-padding-y: 0.3125rem;
+  --bs-navbar-brand-padding-y: 0.125rem;
   --bs-navbar-brand-margin-end: 1rem;
-  --bs-navbar-brand-font-size: 1.25rem;
+  --bs-navbar-brand-font-size: 1.5rem;
   --bs-navbar-brand-color: #031dc1;
   --bs-navbar-brand-hover-color: #031dc1;
   --bs-navbar-nav-link-padding-x: 0.5rem;

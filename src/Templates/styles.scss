@@ -7,6 +7,11 @@ $placeholder-opacity-max: 0.1;
 $input-placeholder-color: #7aa0c1;
 $warning: #bd851d;
 
+$navbar-brand-font-size: 1.5rem;
+.navbar .nav-link {
+  font-weight: bold;
+}
+
 $body-color-dark: #07baba;
 $body-bg-dark: #010032;
 
@@ -27,6 +32,13 @@ $table-border-factor: 0.5;
 $carousel-transition-duration: 1s;
 $carousel-dark-caption-color: #ffffff;
 
+// these dont work for some reason
+$card-bg-dark: #fa0808;
+$card-color-dark: #0707ca;
+$card-border-color-dark: #d5dd47;
+
+$table-color: #090043;
+
 #stocksCarousel {
   max-width: 1400px;  // Cap the entire carousel width
   margin: 0 auto;     // Center the carousel horizontally
@@ -46,6 +58,26 @@ $navbar-light-active-color: #031dc1; // Active color for navbar items
 $card-border-color: #105da8; // Border color of the card
 $card-border-radius: 10px; // Rounded corners for cards
 $card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Shadow effect
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+// Light mode styles
+[data-bs-theme="light"] body {
+  background: linear-gradient(270deg, #0c59cd, #0ae3f8, #040a4c);
+  background-size: 300% 300%;
+  animation: gradientShift 10s ease infinite;
+}
+
+// Dark mode styles
+[data-bs-theme="dark"] body {
+  background: linear-gradient(270deg, #515151, rgb(30, 14, 14), #111111);
+  background-size: 300% 300%;
+  animation: gradientShift 10s ease infinite;
+}
 
 // Import Bootstrap
 @import "../../node_modules/bootstrap/scss/bootstrap";

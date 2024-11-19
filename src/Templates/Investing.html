@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StocksByMarek</title>
+    <link rel="icon" href="./favicon.ico">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg bg-warning shadow">
+    <div class="container">
+
+        <a class="navbar-brand d-flex align-items-center" href="HomePage.html" aria-current="page">
+            <img src="./favicon.ico" alt="Stock.image" width="30" height="24" class="me-3">
+            <span>Stocks</span>
+        </a>
+
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link px-3" aria-current="page" href="PridatKlienta.html">Pridať klienta</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3" href="ZoznamKlientov.html">Zoznam klientov</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3" href="Portfolio.html">Portfolio Simulácia</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3" href="Accounts.html">Účty</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active px-3" href="Investing.html">Investovanie</a>
+                </li>
+            </ul>
+
+            <div class="d-flex ms-auto">
+                <button class="btn btn-primary btn-outline-dark" id="themeToggle" title="Switch light mode vs dark mode!">Switch Mode</button>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row text-center">
+
+        <!-- Buy Section -->
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-lg">
+                <img src="buy.jpg" class="card-img-top" alt="Buy Stocks">
+                <div class="card-body">
+                    <h5 class="card-title">Buy Stocks</h5>
+                    <form id="buyForm">
+                        <div class="mb-3">
+                            <label for="buyStockSymbol" class="form-label">Stock Symbol</label>
+                            <input type="text" id="buyStockSymbol" class="form-control" placeholder="e.g., AAPL" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="currency" class="form-label">Currency</label>
+                            <input type="text" id="currency" class="form-control" placeholder="e.g., USD" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="stockPrice" class="form-label">Stock Price</label>
+                            <input type="number" id="stockPrice" class="form-control" placeholder="e.g., 150" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dividendYield" class="form-label">Dividend Yield</label>
+                            <input type="number" id="dividendYield" class="form-control" step="0.01" placeholder="e.g., 0.02" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="volatility" class="form-label">Volatility</label>
+                            <input type="number" id="volatility" class="form-control" step="0.01" placeholder="e.g., 0.7" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="expectedReturn" class="form-label">Expected Return</label>
+                            <input type="number" id="expectedReturn" class="form-control" step="0.01" placeholder="e.g., 0.8" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="investmentAmount" class="form-label">Investment Amount</label>
+                            <input type="number" id="investmentAmount" class="form-control" placeholder="e.g., 1000" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Buy</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Section -->
+        <div class="col-md-4 d-flex mb-3">
+            <div class="card shadow-lg">
+                <img src="middle.jpg" class="card-img-top" alt="Middle Section">
+                <div class="card-body">
+                    <h5 class="card-title">Middle Section</h5>
+                    <p>This section can include additional info or stock insights.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sell Section -->
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-lg">
+                <img src="sell.jpg" class="card-img-top" alt="Sell Stocks">
+                <div class="card-body">
+                    <h5 class="card-title">Sell Stocks</h5>
+                    <form id="sellForm">
+                        <div class="mb-3">
+                            <label for="sellStockSymbol" class="form-label">Stock Symbol</label>
+                            <input type="text" id="sellStockSymbol" class="form-control" placeholder="e.g., AAPL" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="sharesToSell" class="form-label">Shares to Sell</label>
+                            <input type="number" id="sharesToSell" class="form-control" placeholder="e.g., 6" required>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Sell</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-bs-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        htmlElement.setAttribute('data-bs-theme', newTheme);
+    });
+</script>
+
+<script src="../../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+<script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
