@@ -3,6 +3,21 @@
   font-weight: bold;
 }
 
+[data-bs-theme=dark] .card {
+  background-color: #6c7483 !important;
+}
+
+.carousel-caption {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.carousel-caption h5, .carousel-caption .h5 {
+  font-size: 2rem;
+}
+.carousel-caption p {
+  font-size: 1.25rem;
+}
+
 #stocksCarousel {
   max-width: 1400px;
   margin: 0 auto;
@@ -31,7 +46,7 @@
 }
 
 [data-bs-theme=dark] body {
-  background: linear-gradient(270deg, #515151, rgb(30, 14, 14), #111111);
+  background: linear-gradient(270deg, #515151, rgb(12, 20, 51), #111111);
   background-size: 300% 300%;
   animation: gradientShift 10s ease infinite;
 }
@@ -90,7 +105,7 @@
   --bs-danger-text-emphasis: rgb(88, 21.2, 27.6);
   --bs-light-text-emphasis: #495057;
   --bs-dark-text-emphasis: #495057;
-  --bs-primary-bg-subtle: rgb(206.6, 226, 254.6);
+  --bs-primary-bg-subtle: #e3b975;
   --bs-secondary-bg-subtle: rgb(225.6, 227.4, 229);
   --bs-success-bg-subtle: rgb(248.6, 246.4, 230);
   --bs-info-bg-subtle: rgb(206.6, 244.4, 252);
@@ -111,7 +126,7 @@
   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-  --bs-body-font-family: "sans-serif";
+  --bs-body-font-family: "Roboto", sans-serif;
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
@@ -164,18 +179,18 @@
 
 [data-bs-theme=dark] {
   color-scheme: dark;
-  --bs-body-color: #07baba;
-  --bs-body-color-rgb: 7, 186, 186;
-  --bs-body-bg: #010032;
-  --bs-body-bg-rgb: 1, 0, 50;
+  --bs-body-color: #7c520c;
+  --bs-body-color-rgb: 124, 82, 12;
+  --bs-body-bg: #212529;
+  --bs-body-bg-rgb: 33, 37, 41;
   --bs-emphasis-color: #fff;
   --bs-emphasis-color-rgb: 255, 255, 255;
-  --bs-secondary-color: rgba(7, 186, 186, 0.75);
-  --bs-secondary-color-rgb: 7, 186, 186;
+  --bs-secondary-color: rgba(124, 82, 12, 0.75);
+  --bs-secondary-color-rgb: 124, 82, 12;
   --bs-secondary-bg: #343a40;
   --bs-secondary-bg-rgb: 52, 58, 64;
-  --bs-tertiary-color: rgba(7, 186, 186, 0.5);
-  --bs-tertiary-color-rgb: 7, 186, 186;
+  --bs-tertiary-color: rgba(124, 82, 12, 0.5);
+  --bs-tertiary-color-rgb: 124, 82, 12;
   --bs-tertiary-bg: rgb(42.5, 47.5, 52.5);
   --bs-tertiary-bg-rgb: 43, 48, 53;
   --bs-primary-text-emphasis: rgb(109.8, 168, 253.8);
@@ -208,7 +223,7 @@
   --bs-link-color-rgb: 110, 168, 254;
   --bs-link-hover-color-rgb: 139, 185, 254;
   --bs-code-color: rgb(230.4, 132.6, 181.2);
-  --bs-highlight-color: #07baba;
+  --bs-highlight-color: #7c520c;
   --bs-highlight-bg: rgb(102, 77.2, 2.8);
   --bs-border-color: #495057;
   --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
@@ -2349,7 +2364,7 @@ textarea.form-control-lg {
 }
 
 [data-bs-theme=dark] .form-select {
-  --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2307baba' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%237c520c' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
 }
 
 .form-check {
@@ -5722,7 +5737,7 @@ textarea.form-control-lg {
   z-index: var(--bs-tooltip-zindex);
   display: block;
   margin: var(--bs-tooltip-margin);
-  font-family: "sans-serif";
+  font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -5832,7 +5847,7 @@ textarea.form-control-lg {
   z-index: var(--bs-popover-zindex);
   display: block;
   max-width: var(--bs-popover-max-width);
-  font-family: "sans-serif";
+  font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;

@@ -1,19 +1,27 @@
 // Override Bootstrap variables
 $body-bg: #105da8;
 $input-bg: #dfd482;
+
 $success: #dfd482;
-$font-family-base: 'sans-serif';
+$warning: #bd851d;
+$primary-bg-subtle: #e3b975;
+
 $placeholder-opacity-max: 0.1;
 $input-placeholder-color: #7aa0c1;
-$warning: #bd851d;
+
+$font-family-base: "Roboto", sans-serif;
 
 $navbar-brand-font-size: 1.5rem;
 .navbar .nav-link {
   font-weight: bold;
 }
 
-$body-color-dark: #07baba;
-$body-bg-dark: #010032;
+$body-color-dark: #7c520c;
+//$card-bg-dark: #676567; // doesnt work for some reason
+
+[data-bs-theme="dark"] .card {
+  background-color: #6c7483 !important;
+}
 
 // these dont work for some reason
 $navbar-dark-color: #ffffff;
@@ -32,8 +40,21 @@ $table-border-factor: 0.5;
 $carousel-transition-duration: 1s;
 $carousel-dark-caption-color: #ffffff;
 
+.carousel-caption {
+  font-size: 1.5rem;
+  font-weight: bold;
+
+  h5 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+  }
+}
+
 // these dont work for some reason
-$card-bg-dark: #fa0808;
+$card-bg-dark: #a8a0a0;
 $card-color-dark: #0707ca;
 $card-border-color-dark: #d5dd47;
 
@@ -74,7 +95,7 @@ $card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Shadow effect
 
 // Dark mode styles
 [data-bs-theme="dark"] body {
-  background: linear-gradient(270deg, #515151, rgb(30, 14, 14), #111111);
+  background: linear-gradient(270deg, #515151, rgb(12, 20, 51), #111111);
   background-size: 300% 300%;
   animation: gradientShift 10s ease infinite;
 }
