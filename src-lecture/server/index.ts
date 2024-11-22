@@ -21,14 +21,15 @@ app.get(`${API}/clients`, (req: Request, res: Response) => {
 });
 
 app.post(`${API}/clients`, (req: Request, res: Response) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
     if (req.body.firstName === undefined || req.body.lastName === undefined) {
         res.status(409);
+        res.setHeader('Access-Control-Allow-Origin', '*');
         res.json({ error: 'Missing required fields' });
         return;
     }
     const person = new Person(req.body.firstName, req.body.lastName);
     const id = bank.addClient(person);
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.json(id);
 });
 
@@ -98,6 +99,14 @@ app.put(`${API}/clients/:id`, (req: Request, res: Response) => {
     }
 
     res.json();
+});
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    next();
 });
 
 app.listen(port, () => {

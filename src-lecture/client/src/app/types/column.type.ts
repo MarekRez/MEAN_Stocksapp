@@ -1,4 +1,6 @@
 export type Column<T> = {
   label: string;
-  attribute: keyof T;
+  text?: string;
+  attribute?: keyof T;
+  onCLick?: (row: T) => void;
 }
