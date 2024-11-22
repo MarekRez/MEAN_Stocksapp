@@ -10,7 +10,15 @@
     @for (row of rows; track $index) {
       <tr>
         @for (column of columns; track $index) {
-          <td>{{row[column.attribute]}}</td>
+          <td>
+            <span (click)="column?.onCLick ? column?.onCLick(row) : null" [ngClass]="{'link-primary': column?.onCLick}">
+               @if (column.attribute) {
+                 {{row[column.attribute]}}
+               } @else {
+                 {{column.text}}
+               }
+            </span>
+          </td>
         }
       </tr>
     } @empty {

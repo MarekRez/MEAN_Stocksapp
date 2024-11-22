@@ -15,6 +15,10 @@ export class ClientsService {
     }
 
     create(client: Person): Observable<number> {
-        return this.http.post<number>('http://localhost:3000/api/clients', client, {headers: {'Access-Control-Allow-Origin': '*'}});
+        return this.http.post<number>('http://localhost:3000/api/clients', client);
+    }
+
+    delete(clientId: number) {
+        return this.http.delete<number>(`http://localhost:3000/api/clients/${clientId}`);
     }
 }

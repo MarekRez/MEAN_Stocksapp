@@ -20,10 +20,21 @@ export class ClientListComponent implements OnInit {
 
   clientsColumns: Column<Person>[] = [
     { label: 'First', attribute: 'firstName' },
-    { label: 'Last', attribute: 'lastName' }
+    { label: 'Last', attribute: 'lastName' },
+    { label: '', text: 'Odstrániť', onCLick: (client: Person) => this.deleteClient(client)}
   ]
 
+  deleteClient(client: Person) {
+    this.clientService.delete(client.id!).subscribe(() => {
+      this.refreshData();
+    });
+  }
+
   ngOnInit() {
+    this.refreshData();
+  }
+
+  refreshData() {
     this.isLoading = true;
     this.clientService.getAll().subscribe(clients => {
       this.clients = clients;
