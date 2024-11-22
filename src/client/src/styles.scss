@@ -1,0 +1,106 @@
+// Override Bootstrap variables
+$body-bg: #105da8;
+$input-bg: #dfd482;
+
+$success: #dfd482;
+$warning: #bd851d;
+$primary-bg-subtle: #e3b975;
+
+$placeholder-opacity-max: 0.1;
+$input-placeholder-color: #7aa0c1;
+
+$font-family-base: "Roboto", sans-serif;
+
+$navbar-brand-font-size: 1.5rem;
+.navbar .nav-link {
+  font-weight: bold;
+}
+
+$body-color-dark: #d3952c;
+$info: #27d553;
+
+//$card-bg-dark: #676567; // doesnt work for some reason
+
+[data-bs-theme="dark"] .card {
+  background-color: #26406e !important;
+}
+
+// these dont work for some reason
+$navbar-dark-color: #ffffff;
+$navbar-dark-hover-color: #e11212;
+$navbar-dark-active-color: #ffee22;
+$navbar-dark-bg: #f64a62;
+
+//
+$table-striped-bg: #bd851d;
+$table-bg: #dfd482;
+$table-hover-bg: #105195;
+$table-border-color: #105195;
+$table-border-width: 2px;
+$table-border-factor: 0.5;
+
+$carousel-transition-duration: 1s;
+$carousel-dark-caption-color: #ffffff;
+
+.carousel-caption {
+  font-size: 1.5rem;
+  font-weight: bold;
+
+  h5 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+  }
+}
+
+// these dont work for some reason
+$card-bg-dark: #a8a0a0;
+$card-color-dark: #0707ca;
+$card-border-color-dark: #d5dd47;
+
+$table-color: #090043;
+
+#stocksCarousel {
+  max-width: 1400px;  // Cap the entire carousel width
+  margin: 0 auto;     // Center the carousel horizontally
+
+  .carousel-item img {
+    width: 100%;       // Image spans the container width
+    max-height: 600px; // Cap image height
+    object-fit: cover; // Crop nicely without distortion
+  }
+}
+
+// Navbar
+$navbar-light-hover-color: #ffd800; // Hover color for navbar items
+$navbar-light-active-color: #031dc1; // Active color for navbar items
+
+// Card
+$card-border-color: #105da8; // Border color of the card
+$card-border-radius: 10px; // Rounded corners for cards
+$card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Shadow effect
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+// Light mode styles
+[data-bs-theme="light"] body {
+  background: linear-gradient(270deg, #285daf, #0ae3f8, #040a4c);
+  background-size: 300% 300%;
+  animation: gradientShift 10s ease infinite;
+}
+
+// Dark mode styles
+[data-bs-theme="dark"] body {
+  background: linear-gradient(270deg, #070d53, rgb(12, 20, 51), #111111);
+  background-size: 300% 300%;
+  animation: gradientShift 10s ease infinite;
+}
+
+// Import Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
