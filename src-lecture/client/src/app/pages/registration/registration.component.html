@@ -1,0 +1,28 @@
+<h1>Registrácia klienta</h1>
+<div class="card shadow-lg bg-light">
+  <div class="card-body">
+    <form [formGroup]="formGroup">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Meno</label>
+            <input class="form-control" formControlName="firstName">
+          </div>
+
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Priezvisko</label>
+            <input class="form-control" formControlName="lastName">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="row p-3">
+    <div class="col col-md-auto">
+      <button type="button" class="btn btn-dark w-100" (click)="registerClient()">Odoslať</button>
+    </div>
+  </div>
+</div>

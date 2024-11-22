@@ -1,0 +1,20 @@
+import {inject, Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Person} from '../types/person.type';
+import {Observable} from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ClientsService {
+
+  private http = inject(HttpClient);
+
+    getAll(): Observable<Person[]> {
+        return this.http.get<Person[]>('http://localhost:3000/api/clients');
+    }
+
+    create(client: Person): Observable<number> {
+        return this.http.post<number>('http://localhost:3000/api/clients', client, {headers: {'Access-Control-Allow-Origin': '*'}});
+    }
+}
