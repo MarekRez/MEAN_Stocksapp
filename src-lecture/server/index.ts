@@ -16,10 +16,12 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.get(`${API}/clients`, (req: Request, res: Response) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.json(bank.getClients());
 });
 
 app.post(`${API}/clients`, (req: Request, res: Response) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     if (req.body.firstName === undefined || req.body.lastName === undefined) {
         res.status(409);
         res.json({ error: 'Missing required fields' });
@@ -31,6 +33,7 @@ app.post(`${API}/clients`, (req: Request, res: Response) => {
 });
 
 app.get(`${API}/clients/:id`, (req: Request, res: Response) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     const id = Number(req.params.id);
     if (Number.isNaN(id)) {
         res.status(409);
@@ -50,6 +53,7 @@ app.get(`${API}/clients/:id`, (req: Request, res: Response) => {
 });
 
 app.delete(`${API}/clients/:id`, (req: Request, res: Response) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     const id = Number(req.params.id);
     if (Number.isNaN(id)) {
         res.status(409);
@@ -71,6 +75,7 @@ app.delete(`${API}/clients/:id`, (req: Request, res: Response) => {
 });
 
 app.put(`${API}/clients/:id`, (req: Request, res: Response) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     const id = Number(req.params.id);
     if (Number.isNaN(id)) {
         res.status(409);

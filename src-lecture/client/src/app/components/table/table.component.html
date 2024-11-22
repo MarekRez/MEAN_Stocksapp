@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+  <tr>
+    @for (column of columns; track $index) {
+      <th scope="col">{{column.label}}</th>
+    }
+  </tr>
+  </thead>
+  <tbody>
+    @for (row of rows; track $index) {
+      <tr>
+        @for (column of columns; track $index) {
+          <td>{{row[column.attribute]}}</td>
+        }
+      </tr>
+    } @empty {
+      <div> Žiadne záznamy</div>
+    }
+  </tbody>
+</table>
