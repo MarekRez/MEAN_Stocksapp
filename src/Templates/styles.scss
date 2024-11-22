@@ -16,11 +16,13 @@ $navbar-brand-font-size: 1.5rem;
   font-weight: bold;
 }
 
-$body-color-dark: #7c520c;
+$body-color-dark: #d3952c;
+$info: #27d553;
+
 //$card-bg-dark: #676567; // doesnt work for some reason
 
 [data-bs-theme="dark"] .card {
-  background-color: #6c7483 !important;
+  background-color: #26406e !important;
 }
 
 // these dont work for some reason
@@ -88,14 +90,14 @@ $card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Shadow effect
 
 // Light mode styles
 [data-bs-theme="light"] body {
-  background: linear-gradient(270deg, #0c59cd, #0ae3f8, #040a4c);
+  background: linear-gradient(270deg, #285daf, #0ae3f8, #040a4c);
   background-size: 300% 300%;
   animation: gradientShift 10s ease infinite;
 }
 
 // Dark mode styles
 [data-bs-theme="dark"] body {
-  background: linear-gradient(270deg, #515151, rgb(12, 20, 51), #111111);
+  background: linear-gradient(270deg, #070d53, rgb(12, 20, 51), #111111);
   background-size: 300% 300%;
   animation: gradientShift 10s ease infinite;
 }

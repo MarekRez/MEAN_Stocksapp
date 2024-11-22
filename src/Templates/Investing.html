@@ -51,82 +51,82 @@
     </div>
 </nav>
 
-<div class="container mt-5">
-    <div class="row text-center">
-
-        <!-- Buy Section -->
-        <div class="col-md-4 mb-3">
-            <div class="card shadow-lg">
-                <img src="buy.jpg" class="card-img-top" alt="Buy Stocks">
-                <div class="card-body">
-                    <h5 class="card-title">Buy Stocks</h5>
-                    <form id="buyForm">
-                        <div class="mb-3">
-                            <label for="buyStockSymbol" class="form-label">Stock Symbol</label>
-                            <input type="text" id="buyStockSymbol" class="form-control" placeholder="e.g., AAPL" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="currency" class="form-label">Currency</label>
-                            <input type="text" id="currency" class="form-control" placeholder="e.g., USD" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="stockPrice" class="form-label">Stock Price</label>
-                            <input type="number" id="stockPrice" class="form-control" placeholder="e.g., 150" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="dividendYield" class="form-label">Dividend Yield</label>
-                            <input type="number" id="dividendYield" class="form-control" step="0.01" placeholder="e.g., 0.02" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="volatility" class="form-label">Volatility</label>
-                            <input type="number" id="volatility" class="form-control" step="0.01" placeholder="e.g., 0.7" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="expectedReturn" class="form-label">Expected Return</label>
-                            <input type="number" id="expectedReturn" class="form-control" step="0.01" placeholder="e.g., 0.8" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="investmentAmount" class="form-label">Investment Amount</label>
-                            <input type="number" id="investmentAmount" class="form-control" placeholder="e.g., 1000" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Buy</button>
-                    </form>
+<div class="d-flex flex-column min-vh-100">
+    <div class="container mt-5">
+        <div class="row text-center">
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-lg text-bg-secondary p-4 w-100" style="max-width: 800px;">
+                    <div class="card-body">
+                        <h5 class="card-title text-black fw-bold mb-4">Buy Stocks</h5>
+                        <form id="buyForm">
+                            <div class="mb-3">
+                                <label for="buyStockSymbol" class="form-label">Stock Symbol</label>
+                                <input type="text" id="buyStockSymbol" class="form-control" placeholder="e.g., AAPL" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="currency" class="form-label">Currency</label>
+                                <input type="text" id="currency" class="form-control" placeholder="e.g., USD" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="stockPrice" class="form-label">Stock Price</label>
+                                <input type="number" id="stockPrice" class="form-control" placeholder="e.g., 150" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="dividendYield" class="form-label">Dividend Yield</label>
+                                <input type="number" id="dividendYield" class="form-control" step="0.01" placeholder="e.g., 0.02" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="volatility" class="form-label">Volatility</label>
+                                <input type="number" id="volatility" class="form-control" step="0.01" placeholder="e.g., 0.7" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="expectedReturn" class="form-label">Expected Return</label>
+                                <input type="number" id="expectedReturn" class="form-control" step="0.01" placeholder="e.g., 0.8" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="investmentAmount" class="form-label">Investment Amount</label>
+                                <input type="number" id="investmentAmount" class="form-control" placeholder="e.g., 1000" required>
+                            </div>
+                            <button type="submit" class="btn btn-info w-25 mt-3">Buy</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Middle Section -->
-        <div class="col-md-4 d-flex mb-3">
-            <div class="card shadow-lg">
-                <img src="middle.jpg" class="card-img-top" alt="Middle Section">
-                <div class="card-body">
-                    <h5 class="card-title">Middle Section</h5>
-                    <p>This section can include additional info or stock insights.</p>
+            <div class="col-md-4 mb-3 d-flex justify-content-center align-items-center">
+                <div class="p-1 shadow-lg" style="border: 3px solid #105da8; border-radius: 10px; background-color: #ffa500;">
+                    <img src="Stock_chart.png" alt="Stock Chart" style="max-width: 100%; height: auto; border-radius: 10px;">
                 </div>
             </div>
-        </div>
 
-        <!-- Sell Section -->
-        <div class="col-md-4 mb-3">
-            <div class="card shadow-lg">
-                <img src="sell.jpg" class="card-img-top" alt="Sell Stocks">
-                <div class="card-body">
-                    <h5 class="card-title">Sell Stocks</h5>
-                    <form id="sellForm">
-                        <div class="mb-3">
-                            <label for="sellStockSymbol" class="form-label">Stock Symbol</label>
-                            <input type="text" id="sellStockSymbol" class="form-control" placeholder="e.g., AAPL" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="sharesToSell" class="form-label">Shares to Sell</label>
-                            <input type="number" id="sharesToSell" class="form-control" placeholder="e.g., 6" required>
-                        </div>
-                        <button type="submit" class="btn btn-danger">Sell</button>
-                    </form>
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-lg text-bg-secondary p-4 w-100" style="max-width: 800px;">
+                    <div class="card-body">
+                        <h5 class="card-title text-black fw-bold mb-4">Sell Stocks</h5>
+                        <form id="sellForm">
+                            <div class="mb-3">
+                                <label for="sellStockSymbol" class="form-label">Stock Symbol</label>
+                                <input type="text" id="sellStockSymbol" class="form-control" placeholder="e.g., AAPL" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="sharesToSell" class="form-label">Shares to Sell</label>
+                                <input type="number" id="sharesToSell" class="form-control" placeholder="e.g., 6" required>
+                            </div>
+                            <button type="submit" class="btn btn-danger w-25 mt-3">Sell</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="container flex-grow-1"></div>
+    <footer class="bg-dark text-white py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <p class="mb-0">&copy; 2024 StocksByMarek. All rights reserved.</p>
+            <p class="mb-0">Contact us: <a href="mailto:support@stocksbymarek.com" class="text-white">support@stocksbymarek.com</a></p>
+        </div>
+    </footer>
 </div>
 
 <script>

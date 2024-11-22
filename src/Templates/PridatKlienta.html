@@ -51,42 +51,85 @@
     </div>
 </nav>
 
-<div class="container mt-5 d-flex border-0 justify-content-center align-items-center">
-    <div class="card shadow-lg text-bg-secondary" style="width: 800px;">
-        <h2 class="mb-4 mt-3 ms-3 text-black fw-bold">Add client</h2>
-        <div class="card-body">
-            <form id="ClientForm">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="Name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="Name" placeholder="Marek Rezny" required>
+<div class="d-flex flex-column min-vh-100">
+    <div class="container mt-5 mb-5 d-flex border-0 justify-content-center align-items-center">
+        <div class="card shadow-lg text-bg-secondary" style="width: 800px;">
+            <h2 class=" d-flex mb-4 mt-3 ms-3 text-black fw-bold justify-content-center mt-5">Add client</h2>
+            <div class="card-body">
+                <form id="ClientForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="Name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="Name" placeholder="Marek Rezny" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Email" class="form-label">Email</label>
+                                <input type="text" class="form-control" id="Email" placeholder="rezny.marek@gmail.com" required>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="Email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="Email" placeholder="rezny.marek@gmail.com" required>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="bankAccountBalance" class="form-label">Bank Account Balance</label>
+                                <input type="number" class="form-control" id="bankAccountBalance" placeholder="4000" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="investmentAccountBalance" class="form-label">Investment Account Balance</label>
+                                <input type="number" class="form-control" id="investmentAccountBalance" placeholder="2000" required>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="bankAccountBalance" class="form-label">Bank Account Balance</label>
-                            <input type="number" class="form-control" id="bankAccountBalance" placeholder="4000" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="investmentAccountBalance" class="form-label">Investment Account Balance</label>
-                            <input type="number" class="form-control" id="investmentAccountBalance" placeholder="2000" required>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row p-3">
-                <div class="col col-md-auto">
-                    <button type="submit" class="btn btn-dark w-100" title="Add client to the database!" data-bs-toggle="tooltip">Send</button>
+                <div class="row p-3">
+                    <div class="d-flex col justify-content-end">
+                        <button type="submit" class="btn btn-primary w-25" title="Add client to the database!" data-bs-toggle="tooltip">Send</button>
+                    </div>
                 </div>
+                </form>
             </div>
-            </form>
         </div>
     </div>
+
+    <div class="container mt-4">
+        <p class="text-center">
+            Pridanie klienta do systému je dôležitým krokom pre správu ich finančných údajov a investícií. Prosím, uistite sa, že všetky údaje sú presné a aktuálne, aby sme mohli poskytovať tie najlepšie služby. Tento formulár umožňuje rýchle a jednoduché pridanie nového klienta s ich bankovým a investičným zostatkom.
+        </p>
+
+        <p>
+            Po pridaní klienta budete môcť:
+        </p>
+        <ul>
+            <li>Prezerať si zoznam všetkých klientov na stránke <strong>Zoznam Klientov</strong>.</li>
+            <li>Sledovať ich bankový a investičný zostatok v reálnom čase.</li>
+            <li>Spravovať ich údaje a vykonávať aktualizácie podľa potreby.</li>
+            <li>Pridávať alebo vyberať finančné prostriedky z ich účtov.</li>
+        </ul>
+
+        <p>
+            Údaje, ktoré pridáte, budú uložené bezpečne a použité výhradne na správu finančných transakcií. Ak narazíte na problém pri vypĺňaní formulára, kontaktujte podporu na <a href="mailto:support@stocksbymarek.com" class="text-dark fw-bold">support@stocksbymarek.com</a>.
+        </p>
+
+        <h4>Pokyny na vypĺňanie formulára:</h4>
+        <ol>
+            <li>Zadajte celé meno klienta, vrátane všetkých titulov, ak je to potrebné.</li>
+            <li>Vyplňte e-mail klienta, ktorý bude slúžiť ako primárny kontaktný údaj.</li>
+            <li>Do kolonky <strong>Bank Account Balance</strong> zadajte aktuálny stav klientovho bankového účtu.</li>
+            <li>Do kolonky <strong>Investment Account Balance</strong> zadajte hodnotu ich investičného zostatku.</li>
+            <li>Kliknite na tlačidlo <strong>Send</strong>, aby ste pridali klienta do systému.</li>
+        </ol>
+
+        <p>
+            Veríme, že tento systém vám umožní spravovať klientov efektívnejšie a s lepším prehľadom. Ak máte akékoľvek návrhy na zlepšenie, neváhajte nás kontaktovať. Sme tu, aby sme vám pomohli!
+        </p>
+    </div>
+
+    <div class="container flex-grow-1 mt-5"></div>
+    <footer class="bg-dark text-white py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <p class="mb-0">&copy; 2024 StocksByMarek. All rights reserved.</p>
+            <p class="mb-0">Contact us: <a href="mailto:support@stocksbymarek.com" class="text-white">support@stocksbymarek.com</a></p>
+        </div>
+    </footer>
 </div>
 
 <script>

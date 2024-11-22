@@ -9,49 +9,49 @@
 </head>
 <body>
 
-<div class="overflow-scroll vh-100">
-  <nav class="navbar navbar-expand-lg bg-warning shadow">
-    <div class="container">
+<nav class="navbar navbar-expand-lg bg-warning shadow">
+  <div class="container">
 
-      <a class="navbar-brand d-flex align-items-center" href="HomePage.html" aria-current="page">
-        <img src="./favicon.ico" alt="Stock.image" width="30" height="24" class="me-3">
-        <span>Stocks</span>
-      </a>
-
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <a class="navbar-brand d-flex align-items-center" href="HomePage.html" aria-current="page">
+      <img src="./favicon.ico" alt="Stock.image" width="30" height="24" class="me-3">
+      <span>Stocks</span>
+    </a>
 
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item">
-            <a class="nav-link px-3" aria-current="page" href="PridatKlienta.html">Pridať klienta</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3" href="ZoznamKlientov.html">Zoznam klientov</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active px-3" href="Portfolio.html">Portfolio Simulácia</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3" href="Accounts.html">Účty</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3" href="Investing.html">Investovanie</a>
-          </li>
-        </ul>
 
-        <div class="d-flex ms-auto">
-          <button class="btn btn-primary btn-outline-dark" id="themeToggle" title="Switch light mode vs dark mode!">Switch Mode</button>
-        </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link px-3" aria-current="page" href="PridatKlienta.html">Pridať klienta</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="ZoznamKlientov.html">Zoznam klientov</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active px-3" href="Portfolio.html">Portfolio Simulácia</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="Accounts.html">Účty</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="Investing.html">Investovanie</a>
+        </li>
+      </ul>
+
+      <div class="d-flex ms-auto">
+        <button class="btn btn-primary btn-outline-dark" id="themeToggle" title="Switch light mode vs dark mode!">Switch Mode</button>
       </div>
-    </div>
-  </nav>
 
+    </div>
+  </div>
+</nav>
+
+<div class="d-flex flex-column min-vh-100">
   <div class="container mt-5 d-flex border-0 justify-content-center align-items-center">
     <div class="card shadow-lg text-bg-secondary p-4 w-100" style="max-width: 700px;">
       <div class="card-body">
@@ -109,8 +109,15 @@
       </div>
     </div>
   </div>
-</div>
 
+  <div class="container flex-grow-1"></div>
+    <footer class="bg-dark text-white py-3">
+      <div class="container d-flex justify-content-between align-items-center">
+        <p class="mb-0">&copy; 2024 StocksByMarek. All rights reserved.</p>
+        <p class="mb-0">Contact us: <a href="mailto:support@stocksbymarek.com" class="text-white">support@stocksbymarek.com</a></p>
+      </div>
+    </footer>
+</div>
 
 <div class="modal fade" id="resultModal" aria-labelledby="resultModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable">
