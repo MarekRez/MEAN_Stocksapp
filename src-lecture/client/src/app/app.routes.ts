@@ -13,7 +13,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/registration',
+    redirectTo: '/client-list',
     pathMatch: 'full'
   }
 ];

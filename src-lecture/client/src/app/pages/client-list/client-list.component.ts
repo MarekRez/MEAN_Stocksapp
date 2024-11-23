@@ -16,6 +16,7 @@ export class ClientListComponent implements OnInit {
   private clientService = inject(ClientsService);
 
   isLoading: boolean = false;
+  isDeleting: boolean = false;
   clients: Person[] = [];
 
   clientsColumns: Column<Person>[] = [
@@ -25,7 +26,9 @@ export class ClientListComponent implements OnInit {
   ]
 
   deleteClient(client: Person) {
+    this.isDeleting = true;
     this.clientService.delete(client.id!).subscribe(() => {
+      this.isDeleting = false;
       this.refreshData();
     });
   }

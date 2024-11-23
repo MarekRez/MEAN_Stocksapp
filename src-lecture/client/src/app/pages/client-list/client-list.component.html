@@ -5,6 +5,10 @@
       <div>
         Načítavam ...
       </div>
+    } @else if (isDeleting) {
+      <div>
+        Odstraňujem ...
+      </div>
     } @else {
       <app-table
         [columns]="clientsColumns"

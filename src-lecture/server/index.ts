@@ -1,8 +1,11 @@
 import express, { Request, Response } from 'express';
+import cors from 'cors';
 import {Bank} from './classes/Bank';
 import {Person} from './classes/Person';
 
 const app = express();
+app.use(cors());
+
 const port = 3000;
 
 const API = '/api';
@@ -16,25 +19,21 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.get(`${API}/clients`, (req: Request, res: Response) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
     res.json(bank.getClients());
 });
 
 app.post(`${API}/clients`, (req: Request, res: Response) => {
     if (req.body.firstName === undefined || req.body.lastName === undefined) {
         res.status(409);
-        res.setHeader('Access-Control-Allow-Origin', '*');
         res.json({ error: 'Missing required fields' });
         return;
     }
     const person = new Person(req.body.firstName, req.body.lastName);
     const id = bank.addClient(person);
-    res.setHeader('Access-Control-Allow-Origin', '*');
     res.json(id);
 });
 
 app.get(`${API}/clients/:id`, (req: Request, res: Response) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
     const id = Number(req.params.id);
     if (Number.isNaN(id)) {
         res.status(409);
@@ -54,7 +53,6 @@ app.get(`${API}/clients/:id`, (req: Request, res: Response) => {
 });
 
 app.delete(`${API}/clients/:id`, (req: Request, res: Response) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
     const id = Number(req.params.id);
     if (Number.isNaN(id)) {
         res.status(409);
@@ -76,7 +74,6 @@ app.delete(`${API}/clients/:id`, (req: Request, res: Response) => {
 });
 
 app.put(`${API}/clients/:id`, (req: Request, res: Response) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
     const id = Number(req.params.id);
     if (Number.isNaN(id)) {
         res.status(409);
@@ -99,14 +96,6 @@ app.put(`${API}/clients/:id`, (req: Request, res: Response) => {
     }
 
     res.json();
-});
-
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    next();
 });
 
 app.listen(port, () => {
