@@ -11,7 +11,9 @@
       <tr>
         @for (column of columns; track $index) {
           <td>
-            <span (click)="column?.onCLick ? column?.onCLick(row) : null" [ngClass]="{'link-primary': column?.onCLick}">
+            <span (click)="column?.onCLick ? column?.onCLick(row) : null"
+                  [ngClass]="{'link-primary': column?.onCLick}"
+                  style="cursor: pointer">
                @if (column.attribute) {
                  {{row[column.attribute]}}
                } @else {
