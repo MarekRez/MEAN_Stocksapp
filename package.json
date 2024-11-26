@@ -24,8 +24,8 @@
   },
   "homepage": "https://github.com/sromovsky/fhi-imapl-2024#readme",
   "devDependencies": {
-    "@types/express": "^5.0.0",
     "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   },

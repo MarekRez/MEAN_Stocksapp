@@ -6,10 +6,13 @@ import {Stock} from "../Classes/Stock";
 import {StockSymbol} from "../Enums/StockSymbol";
 import {TradingCompany} from "../Classes/TradingCompany";
 import {Portfolio} from "../Classes/Portfolio";
+import cors from "cors";
 
 const app = express();
 const port = 3000;
 const API = '/api';
+
+app.use(cors());
 
 app.use(express.json());
 
@@ -23,8 +26,15 @@ const clients = new TradingCompany()
 
 // GET - dones zoznam klientov
 app.get(`${API}/clients`, (req: Request, res: Response) => {
-    res.json(clients.getAllClients());
+    const allClients = clients.getAllClients().map(client => ({
+        name: client.getName(),
+        email: client.getEmail(),
+        bankAccountBalance: client.getBankAccount().getBalance(),
+        investmentAccountBalance: client.getInvestmentAccount().getBalance(),
+    }));
+    res.json(allClients);
 });
+
 
 // POST - vytvor noveho clienta
 app.post(`${API}/clients`, (req: Request, res: Response) => {
@@ -33,13 +43,18 @@ app.post(`${API}/clients`, (req: Request, res: Response) => {
         res.json({ error: 'Missing required fields' });
         return;
     }
-    const bankAccount = new BankAccount(req.body.bankAccountBalance);
-    const InvestmentAccount = new Account(req.body.investmentAccountBalance, bankAccount);
-    const person = new Person(req.body.name, req.body.email, bankAccount, InvestmentAccount );
+    const bankAccount = new BankAccount(req.body.bankAccountBalance || 1);
+    const investmentAccount = new Account(req.body.investmentAccountBalance || 1, bankAccount);
+    const person = new Person(req.body.name, req.body.email, bankAccount, investmentAccount );
 
     const client = clients.addClient(person);
 
-    res.json(client);
+    res.json({
+        name: client.getName(),
+        email: client.getEmail(),
+        bankAccountBalance: bankAccount.getBalance(),
+        investmentAccountBalance: investmentAccount.getBalance()
+    });
 });
 
 // GET - dones konkretneho klienta na zaklade emailu

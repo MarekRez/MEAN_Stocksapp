@@ -1,6 +1,6 @@
-import {MenuItem} from '../types/menu-item';
+import {MenuItemType} from '../types/menu-item-type';
 
-export const MENU_ITEMS: MenuItem[] = [
+export const MENU_ITEMS: MenuItemType[] = [
   {label: 'Pridať klienta', routerLink: '/add-client'},
   {label: 'Zoznam klientov', routerLink: '/client-list'},
   {label: 'Portfolio Simulácia', routerLink: '/portfolio'},

@@ -1,4 +1,4 @@
-export type MenuItem = {
+export type MenuItemType = {
   label: string;
   routerLink: string;
 }

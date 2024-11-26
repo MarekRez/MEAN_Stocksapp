@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
@@ -13,5 +13,10 @@ import {ThemeService} from './services/theme.service';
 export class AppComponent {
   title = 'StocksByMarek';
 
-  constructor(private themeService: ThemeService) {}
+  private themeService = inject(ThemeService);
+
+  constructor() {
+    // ked sa zapne aplikacia, tak sa nacita tema
+    this.themeService.loadTheme();
+  }
 }
