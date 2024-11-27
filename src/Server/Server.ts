@@ -35,7 +35,6 @@ app.get(`${API}/clients`, (req: Request, res: Response) => {
     res.json(allClients);
 });
 
-
 // POST - vytvor noveho clienta
 app.post(`${API}/clients`, (req: Request, res: Response) => {
     if (req.body.name === undefined || req.body.email === undefined) {

@@ -21,4 +21,9 @@ export class ApiClientsService {
   delete(email: string) {
     return this.http.delete<number>(`http://localhost:3000/api/clients/${email}`);
   }
+
+  update(email: string, client: Partial<Client>) : Observable<Client> {
+    return this.http.put<Client>(`http://localhost:3000/api/clients/${email}`, client);
+  }
+
 }

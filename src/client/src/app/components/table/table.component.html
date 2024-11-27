@@ -8,24 +8,39 @@
     </tr>
     </thead>
     <tbody>
+
       @for (row of rows; track $index) {
         <tr>
           @for (column of columns; track $index) {
             <td class="text-center align-middle">
-              <span (click)="column?.onCLick ? column?.onCLick(row) : null"
-                    [ngClass]="{
-                    'btn btn-danger text-white btn-sm': column?.text === 'Odstrániť',
-                    }"
-                    [style.cursor]="column?.onCLick ? 'pointer' : 'default'">
-                 @if (column.attribute) {
-                   {{row[column.attribute]}}
-                 } @else {
-                   {{column.text}}
-                 }
-              </span>
+
+              @if (column.attribute) {
+                <span>
+              {{ row[column.attribute] }}
+            </span>
+
+              } @else if (column.text === 'Odstrániť') {
+                <span
+                  (click)="column?.onCLick ? column?.onCLick(row) : null"
+                  class="btn btn-danger text-white btn-sm"
+                  style="cursor: pointer;"
+                >
+              {{ column.text }}
+            </span>
+
+              } @else if (column.text === 'Upraviť') {
+                <span
+                  (click)="column?.onCLick ? column?.onCLick(row) : null"
+                  class="btn btn-dark text-white btn-sm"
+                  style="cursor: pointer;"
+                >
+              {{ column.text }}
+            </span>
+              }
             </td>
           }
         </tr>
+
       } @empty {
         <div class="px-2 mt-3 text-bg-danger">
           Žiadne záznamy

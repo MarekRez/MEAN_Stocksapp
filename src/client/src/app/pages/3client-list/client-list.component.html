@@ -47,3 +47,61 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="updateClientModal" tabindex="-1" aria-labelledby="updateClientModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title text-success" id="updateClientModalLabel">Upraviť Klienta</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="updateForm">
+          <div class="mb-3">
+            <label for="updateName" class="form-label">Meno Priezvisko</label>
+            <input
+              type="text"
+              id="updateName"
+              class="form-control"
+              formControlName="name"
+              placeholder="Zadajte meno"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="updateEmail" class="form-label">Email</label>
+            <input
+              type="email"
+              id="updateEmail"
+              class="form-control"
+              formControlName="email"
+              placeholder="Zadajte email"
+              readonly
+            />
+          </div>
+          <div class="mb-3">
+            <label for="updateBankBalance" class="form-label">Bankový Zostatok</label>
+            <input
+              type="number"
+              id="updateBankBalance"
+              class="form-control"
+              formControlName="bankAccountBalance"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="updateInvestmentBalance" class="form-label">Investičný Zostatok</label>
+            <input
+              type="number"
+              id="updateInvestmentBalance"
+              class="form-control"
+              formControlName="investmentAccountBalance"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvoriť</button>
+        <button type="button" class="btn btn-primary" (click)="updateClient()">Uložiť Zmeny</button>
+      </div>
+    </div>
+  </div>
+</div>
