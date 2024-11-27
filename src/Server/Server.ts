@@ -43,8 +43,15 @@ app.post(`${API}/clients`, (req: Request, res: Response) => {
         res.json({ error: 'Missing required fields' });
         return;
     }
-    const bankAccount = new BankAccount(req.body.bankAccountBalance || 1);
-    const investmentAccount = new Account(req.body.investmentAccountBalance || 1, bankAccount);
+
+    const existingClient = clients.getClientByEmail(req.body.email);
+    if (existingClient) {
+        res.status(409).json({ error: 'Email already exists' });
+        return;
+    }
+
+    const bankAccount = new BankAccount(req.body.bankAccountBalance || 0);
+    const investmentAccount = new Account(req.body.investmentAccountBalance || 0, bankAccount);
     const person = new Person(req.body.name, req.body.email, bankAccount, investmentAccount );
 
     const client = clients.addClient(person);
@@ -74,7 +81,12 @@ app.get(`${API}/clients/:email`, (req: Request, res: Response) => {
         return;
     }
 
-    res.json(client);
+    res.json({
+        name: client.getName(),
+        email: client.getEmail(),
+        bankAccountBalance: client.getBankAccount().getBalance(),
+        investmentAccountBalance: client.getInvestmentAccount().getBalance(),
+    });
 });
 
 // DELETE - vymaz klienta na zaklade emailu
@@ -129,8 +141,13 @@ app.put(`${API}/clients/:email`, (req: Request, res: Response) => {
         return;
     }
 
-    res.json(client);
+    res.json({
+        name: client.getName(),
+        email: client.getEmail(),
+        bankAccountBalance: client.getBankAccount().getBalance(),
+        investmentAccountBalance: client.getInvestmentAccount().getBalance(),
     });
+});
 
 // POST - investovanie do akcie
 app.post(`${API}/clients/:email/invest`, (req: Request, res: Response) => {
