@@ -1,0 +1,118 @@
+<div class="d-flex flex-column min-vh-100">
+  <div class="container mt-5 mb-5 d-flex border-0 justify-content-center align-items-center">
+    <div class="card shadow-lg text-bg-secondary" style="width: 800px;">
+      <h2 class=" d-flex mb-4 mt-3 ms-3 text-black fw-bold justify-content-center mt-5">Add client</h2>
+      <div class="card-body">
+
+        @if (isSending) {
+          <div>
+            Odosielam ...
+          </div>
+        } @else {
+          <form [formGroup]="formGroup">
+            <div class="row">
+              <div class="col-md-6">
+                <label class="form-label">Meno Priezvisko</label>
+                <input
+                  class="form-control"
+                  formControlName="name"
+                  placeholder="Marek Režný"
+                  required
+                >
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  formControlName="email"
+                  placeholder="rezny.marek@gmail.com"
+                  (blur)="validateEmail()"
+                  [ngClass]="{'is-invalid': emailExists}"
+                  required
+                >
+                @if (emailExists) {
+                  <div class="invalid-feedback">
+                    Tento email už existuje v systéme. Prosím, zadajte iný email.
+                  </div>
+                }
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <label class="form-label">Želaný stav bankového účtu</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="bankAccountBalance"
+                  placeholder="5000"
+                  step="1000"
+                  required
+                >
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label"> Želaný stav investičného účtu</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="investmentAccountBalance"
+                  placeholder="2000"
+                  step="1000"
+                  required
+                >
+              </div>
+            </div>
+            <div class="row p-3">
+              <div class="d-flex col justify-content-end">
+                <button type="submit" class="btn btn-primary w-25" (click)="registerClient()" [disabled]="formGroup.invalid"
+                        title="Add client to the database!" data-bs-toggle="tooltip">Send
+                </button>
+              </div>
+            </div>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-4">
+    <p class="text-center">
+      Pridanie klienta do systému je dôležitým krokom pre správu ich finančných údajov a investícií.
+      Prosím, uistite sa, že všetky údaje sú presné a aktuálne, aby sme mohli poskytovať tie najlepšie služby.
+      Tento formulár umožňuje rýchle a jednoduché pridanie nového klienta s ich bankovým a investičným zostatkom.
+    </p>
+
+    <p>
+      Po pridaní klienta budete môcť:
+    </p>
+    <ul>
+      <li>Prezerať si zoznam všetkých klientov na stránke <strong>Zoznam Klientov</strong>.</li>
+      <li>Sledovať ich bankový a investičný zostatok v reálnom čase.</li>
+      <li>Spravovať ich údaje a vykonávať aktualizácie podľa potreby.</li>
+      <li>Pridávať alebo vyberať finančné prostriedky z ich účtov.</li>
+    </ul>
+
+    <p>
+      Údaje, ktoré pridáte, budú uložené bezpečne a použité výhradne na správu finančných transakcií.
+      Ak narazíte na problém pri vypĺňaní formulára, kontaktujte podporu na <a
+      href="mailto:support@stocksbymarek.com" class="text-primary fw-bold">support&#64;stocksbymarek.com</a>.
+    </p>
+
+    <h4>Pokyny na vypĺňanie formulára:</h4>
+    <ol>
+      <li>Zadajte celé meno klienta, vrátane všetkých titulov, ak je to potrebné.</li>
+      <li>Vyplňte e-mail klienta, ktorý bude slúžiť ako primárny kontaktný údaj.</li>
+      <li>Do kolonky <strong>Bank Account Balance</strong> zadajte aktuálny stav klientovho bankového účtu.</li>
+      <li>Do kolonky <strong>Investment Account Balance</strong> zadajte hodnotu ich investičného zostatku.</li>
+      <li>Kliknite na tlačidlo <strong>Send</strong>, aby ste pridali klienta do systému.</li>
+    </ol>
+
+    <p>
+      Veríme, že tento systém vám umožní spravovať klientov efektívnejšie a s lepším prehľadom.
+      Ak máte akékoľvek návrhy na zlepšenie, neváhajte nás kontaktovať. Sme tu, aby sme vám pomohli!
+    </p>
+  </div>
+</div>

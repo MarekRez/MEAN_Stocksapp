@@ -1,0 +1,80 @@
+<div class="d-flex flex-column min-vh-100">
+  <div class="container mt-5 d-flex border-0 justify-content-center align-items-center">
+    <div class="card shadow-lg text-bg-secondary p-4 w-100" style="max-width: 700px;">
+      <div class="card-body">
+        <h2 class="text-center mb-5 text-black fw-bold">Portfolio Simulation</h2>
+        <form id="simulationForm">
+          <div class="row">
+
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="stockSymbol" class="form-label">Stock Symbol</label>
+                <input type="text" id="stockSymbol" class="form-control" placeholder="AAPL" required>
+              </div>
+              <div class="mb-3">
+                <label for="currency" class="form-label">Currency</label>
+                <input type="text" id="currency" class="form-control" placeholder="USD" required>
+              </div>
+              <div class="mb-3">
+                <label for="stockPrice" class="form-label">Stock Price</label>
+                <input type="number" id="stockPrice" class="form-control" placeholder="150" required>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="dividendYield" class="form-label">Dividend Yield</label>
+                <input type="number" step="0.1" id="dividendYield" class="form-control" min="0.01" max="1" placeholder="0.3" required>
+              </div>
+              <div class="mb-3">
+                <label for="volatility" class="form-label">Volatility</label>
+                <input type="number" step="0.1" id="volatility" class="form-control" min="0.01" max="1" placeholder="0.4" required>
+              </div>
+              <div class="mb-3">
+                <label for="expectedReturn" class="form-label">Expected Return</label>
+                <input type="number" step="0.1" id="expectedReturn" class="form-control" max="1" placeholder="0.2" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="shares" class="form-label">Number of Shares</label>
+                <input type="number" id="shares" class="form-control" min="1" placeholder="10" required>
+              </div>
+            </div>
+            <div class="col-md-5 text-center mt-3 ms-4">
+              <button type="button" class="btn btn-dark" title="Add the stock to the portfolio!" data-bs-toggle="tooltip" id="addStockButton">Add stock</button>
+            </div>
+          </div>
+
+          <div class="text-center mt-5">
+            <button type="submit" class="btn btn-primary" title="Shows portfolio growth over time!" data-bs-toggle="modal" data-bs-target="#resultModal">Run Simulation</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="resultModal" aria-labelledby="resultModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title text-black fw-bold" id="resultModalLabel">Simulation Result</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="simulationResult">Simulation results will appear here...</p>
+        <p> Simulation results will appear here...</p>
+        <p> Simulation results will appear here...</p>
+        <p> Simulation results will appear here...</p>
+        <p> Simulation results will appear here...</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
