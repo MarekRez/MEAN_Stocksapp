@@ -7,6 +7,7 @@ import {StockSymbol} from "../Enums/StockSymbol";
 import {TradingCompany} from "../Classes/TradingCompany";
 import {Portfolio} from "../Classes/Portfolio";
 import cors from "cors";
+import {StockData} from "../client/src/app/types/stockdata-type";
 
 const app = express();
 const port = 3000;
@@ -260,13 +261,24 @@ app.post(`${API}/portfolio`, (req: Request, res: Response): void => {
     const portfolio = new Portfolio();
 
     // pridanie akcii do portfolia
-    stocks.forEach((stockData) => {
-        const { symbol, currency, price, dividendYield, volatility, expectedReturn, totalShares } = stockData;
-        const stock = new Stock(symbol as StockSymbol, currency, price, dividendYield, volatility, expectedReturn, totalShares);
+    stocks.forEach((stockData: StockData) => {
+        const stock = new Stock(
+            stockData.stockSymbol,
+            stockData.currency,
+            stockData.stockPrice,
+            stockData.dividendYield,
+            stockData.volatility,
+            stockData.expectedReturn,
+            stockData.totalShares
+        );
+
         portfolio.addStock(stock);
     });
+
     // nastavenie konzolovych vypisov do pola simulationResults
     let simulationResults: any[] = [];
+    console.log(portfolio);
+
     console.log = (output) => simulationResults.push(output);
 
     portfolio.simulateMonths(months, showInfo);

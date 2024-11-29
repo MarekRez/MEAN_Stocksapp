@@ -17,7 +17,11 @@ export class Stock {
         volatility: number,
         expectedReturn: number,
         totalShares: number = 0
-    ) {
+    )
+    {
+        if (!name || !currency || stockPrice <= 0 || dividendYield < 0 || volatility < 0 || expectedReturn < 0 || totalShares < 0) {
+        throw new Error('Invalid input values for Stock creation');
+    }
         this.name = name;
         this.currency = currency;
         this.stockPrice = stockPrice;
