@@ -20,7 +20,7 @@ const InvestmentAccount1 = new Account(0, bankAccount1); // balance na zaciatku 
 // nova osoba Marek a priradenie bankoveho uctu 1 a investicneho uctu InvestmentAccount1 k Marekovi
 const Marek = new Person('Marek Rezny', 'rezny.marek@gmail.com', bankAccount1, InvestmentAccount1 );
 
-InvestmentAccount1.deposit(8000); // pridanie 6000 na investicny ucet
+InvestmentAccount1.deposit(8000); // pridanie 8000 na investicny ucet
 Marek.depositToBank(2000); // vratenie 2000 naspat na bankovy ucet
 console.log(`Bank Account Balance: ${bankAccount1.getBalance()}`);
 console.log(`Investment Account Balance: ${InvestmentAccount1.getBalance()}`);

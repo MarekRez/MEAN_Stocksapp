@@ -1,5 +1,3 @@
-import { Account } from "./Account";
-
 export class BankAccount {
     public iban: string;
     private balance: number;

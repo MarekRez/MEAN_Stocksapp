@@ -4,14 +4,12 @@ import {ApiClientsService} from '../../services/api-clients.service';
 import {Client} from '../../types/client-type';
 import {Router} from '@angular/router';
 import {NgClass} from '@angular/common';
-import {CarouselComponent} from '../../components/carousel/carousel.component';
 
 @Component({
   selector: 'app-add-client',
   imports: [
     ReactiveFormsModule,
     NgClass,
-    CarouselComponent
   ],
   templateUrl: './add-client.component.html',
 })
@@ -57,6 +55,7 @@ export class AddClientComponent {
     const client: Client = {
       name: this.formGroup.get('name')!.value || '',
       email: this.formGroup.get('email')!.value || '',
+      iban: '', // Placeholder
       bankAccountBalance: this.formGroup.get('bankAccountBalance')!.value || 0,
       investmentAccountBalance: this.formGroup.get('investmentAccountBalance')!.value || 0
     };

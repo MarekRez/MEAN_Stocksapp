@@ -62,6 +62,7 @@ export class ClientListComponent implements OnInit{
   clientsColumns: Column<Client>[] = [
     { label: 'Meno', attribute: 'name' },
     { label: 'Email', attribute: 'email' },
+    { label: 'IBAN', attribute: 'iban' },
     { label: 'Bankový Zostatok', attribute: 'bankAccountBalance' },
     { label: 'Investičný Zostatok', attribute: 'investmentAccountBalance' },
     { label: 'Akcie:', text: 'Upraviť', onCLick: (client: Client) => this.editClient(client)},

@@ -30,6 +30,7 @@ app.get(`${API}/clients`, (req: Request, res: Response) => {
     const allClients = clients.getAllClients().map(client => ({
         name: client.getName(),
         email: client.getEmail(),
+        iban: client.getBankAccount().iban,
         bankAccountBalance: client.getBankAccount().getBalance(),
         investmentAccountBalance: client.getInvestmentAccount().getBalance(),
     }));
@@ -300,6 +301,7 @@ app.post(`${API}/portfolio`, (req: Request, res: Response): void => {
     });
 });
 
+// GET - zoznam akcii klientov
 app.get(`${API}/client/stocks`, (req: Request, res: Response) => {
 
     const allClients = clients.getAllClients();
@@ -320,6 +322,112 @@ app.get(`${API}/client/stocks`, (req: Request, res: Response) => {
     }
 
     res.json(flattenedData);
+});
+
+// POST - deposit penazi na bankový účet
+app.post(`${API}/clients/:iban/bank/deposit`, (req: Request, res: Response) => {
+    const iban = req.params.iban;
+    const  amount  = req.body;
+
+    if (!amount || amount <= 0) {
+        res.status(400).json({ error: 'Invalid deposit amount' });
+        return;
+    }
+
+    const client = clients.getAllClients().find(client => client.getBankAccount().iban === iban);
+    if (!client) {
+        res.status(404).json({ error: 'Client not found' });
+        return;
+    }
+
+    client.getBankAccount().deposit(amount);
+    res.json({
+        message: `Deposited ${amount.toFixed(2)} successfully`,
+        bankAccountBalance: client.getBankAccount().getBalance(),
+    });
+});
+
+// POST - vytiahnutie penazi z bankového účtu
+app.post(`${API}/clients/:iban/bank/withdraw`, (req: Request, res: Response) => {
+    const iban = req.params.iban;
+    const amount = req.body;
+
+    if (!amount || amount <= 0) {
+        res.status(400).json({ error: 'Invalid withdrawal amount' });
+        return;
+    }
+
+    const client = clients.getAllClients().find(client => client.getBankAccount().iban === iban);
+    if (!client) {
+        res.status(404).json({ error: 'Client not found' });
+        return;
+    }
+
+    const success = client.getBankAccount().withdraw(amount);
+    if (success) {
+        res.json({
+            message: `Withdrawn ${amount.toFixed(2)} successfully`,
+            bankAccountBalance: client.getBankAccount().getBalance(),
+        });
+    } else {
+        res.status(400).json({
+            error: 'Insufficient funds',
+            bankAccountBalance: client.getBankAccount().getBalance(),
+        });
+    }
+});
+
+// POST - deposit penazi na investičný účet
+app.post(`${API}/clients/:iban/investment/deposit`, (req: Request, res: Response) => {
+    const iban = req.params.iban;
+    const amount = req.body;
+
+    if (!amount || amount <= 0) {
+        res.status(400).json({ error: 'Invalid deposit amount' });
+        return;
+    }
+
+    const client = clients.getAllClients().find(client => client.getBankAccount().iban === iban);
+    if (!client) {
+        res.status(404).json({ error: 'Client not found' });
+        return;
+    }
+
+    client.getInvestmentAccount().deposit(amount);
+    res.json({
+        message: `Deposited ${amount.toFixed(2)} successfully to investment account`,
+        investmentAccountBalance: client.getInvestmentAccount().getBalance(),
+    });
+});
+
+// POST - vytiahnutie penazi z investičného účtu
+app.post(`${API}/clients/:iban/investment/withdraw`, (req: Request, res: Response) => {
+    const iban = req.params.iban;
+    const amount = req.body;
+
+    if (!amount || amount <= 0) {
+        res.status(400).json({ error: 'Invalid withdrawal amount' });
+        return;
+    }
+
+    const client = clients.getAllClients().find(client => client.getBankAccount().iban === iban);
+    if (!client) {
+        res.status(404).json({ error: 'Client not found' });
+        return;
+    }
+
+    const success = client.getInvestmentAccount().withdraw(amount);
+    if (success) {
+        res.json({
+            message: `Withdrawn ${amount.toFixed(2)} successfully from investment account`,
+            investmentAccountBalance: client.getInvestmentAccount().getBalance(),
+        });
+    } else {
+        res.status(400).json({
+            error: 'Insufficient funds',
+            investmentAccountBalance: client.getInvestmentAccount().getBalance(),
+        });
+    }
 });
 
 app.listen(port, () => {

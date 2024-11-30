@@ -38,4 +38,20 @@ export class ApiClientsService {
   sellStock(email: string, stockData: any): Observable<any> {
     return this.http.post(`http://localhost:3000/api/clients/${email}/sell`, stockData);
   }
+  depositToBank(iban: string, amount: number): Observable<any> {
+    return this.http.post<any>(`http://localhost:3000/api/clients/${iban}/bank/deposit`, amount );
+  }
+
+  withdrawFromBank(iban: string, amount: number): Observable<any> {
+    return this.http.post<any>(`http://localhost:3000/api/clients/${iban}/bank/withdraw`, amount);
+  }
+
+  depositToInvestment(iban: string, amount: number): Observable<any> {
+    return this.http.post<any>(`http://localhost:3000/api/clients/${iban}/investment/deposit`, amount);
+  }
+
+  withdrawFromInvestment(iban: string, amount: number): Observable<any> {
+    return this.http.post<any>(`http://localhost:3000/api/clients/${iban}/investment/withdraw`, amount);
+  }
+
 }
