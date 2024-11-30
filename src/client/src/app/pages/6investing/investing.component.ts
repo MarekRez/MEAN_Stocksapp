@@ -4,6 +4,8 @@ import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {HttpClient} from '@angular/common/http';
 import {TableComponent} from '../../components/table/table.component';
 import {Column} from '../../types/column.type';
+import {ApiClientsService} from '../../services/api-clients.service';
+import {Stock} from '../../types/OwnedStock-type';
 
 @Component({
   selector: 'app-investing',
@@ -17,17 +19,17 @@ import {Column} from '../../types/column.type';
 })
 export class InvestingComponent implements OnInit {
 
-  clientsColumns: Column<{ email: string; stockSymbol: string; shares: number }>[] = [
+  clientsColumns: Column<Stock>[] = [
     { label: 'Email', attribute: 'email' },
     { label: 'Stock Symbol', attribute: 'stockSymbol' },
     { label: 'Shares', attribute: 'shares' },
   ];
 
-  rows: { email: string; stockSymbol: string; shares: number }[] = [];
-  filteredRows: { email: string; stockSymbol: string; shares: number }[] = [];
+  rows: Stock[] = [];
+  filteredRows: Stock[] = [];
 
   private formBuilder = inject(FormBuilder);
-  private http = inject(HttpClient);
+  private clientService = inject(ApiClientsService);
 
   isLoading: boolean = false;
   search: string = '';
@@ -43,7 +45,7 @@ export class InvestingComponent implements OnInit {
    dividendYield: [0, [Validators.min(0), Validators.max(1)]],
    volatility: [0, [Validators.min(0), Validators.max(1)]],
    expectedReturn: [0, [Validators.min(0), Validators.max(1)]],
-   amount: [1, [Validators.required]],
+   amount: [1, [Validators.required]]
   });
 
   sellForm: FormGroup = this.formBuilder.group({
@@ -55,8 +57,17 @@ export class InvestingComponent implements OnInit {
     if (this.buyForm.valid && this.emailForm.valid) {
       const email = this.emailForm.get('email')!.value;
       const buyData = this.buyForm.value;
-      this.buyForm.reset();
-      this.http.post(`http://localhost:3000/api/clients/${email}/invest`, buyData).subscribe({
+      this.buyForm.reset({
+        stockSymbol: '',
+        currency: 'EUR',
+        stockPrice: '',
+        dividendYield: this.buyForm.value.dividendYield,
+        volatility: this.buyForm.value.volatility,
+        expectedReturn: this.buyForm.value.expectedReturn,
+        totalShares: '',
+      }
+      );
+      this.clientService.buyStock(email, buyData).subscribe({
         next: () => {
           this.fetchClientStocks(); // refresh tabulky po kúpe
           console.log('Stock bought successfully');
@@ -71,7 +82,7 @@ export class InvestingComponent implements OnInit {
       const email = this.emailForm.get('email')!.value;
       const sellData = this.sellForm.value;
       this.sellForm.reset();
-      this.http.post(`http://localhost:3000/api/clients/${email}/sell`, sellData).subscribe({
+      this.clientService.sellStock(email, sellData).subscribe({
         next: () => {
           this.fetchClientStocks(); // refresh tabulky po predaji
           console.log('Stock sold successfully');
@@ -87,8 +98,8 @@ export class InvestingComponent implements OnInit {
 
   fetchClientStocks(): void {
     this.isLoading = true;
-    this.http.get<any[]>('http://localhost:3000/api/client/stocks').subscribe({
-      next: (data) => {
+    this.clientService.getClientStocks().subscribe({
+      next: (data: Stock[]) => {
         this.rows = data;
         this.filteredRows = data;
         this.isLoading = false;

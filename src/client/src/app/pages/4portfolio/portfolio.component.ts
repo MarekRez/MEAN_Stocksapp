@@ -59,9 +59,9 @@ export class PortfolioComponent {
         stockSymbol: '',
         currency: 'EUR',
         stockPrice: '',
-        dividendYield: '',
-        volatility: '',
-        expectedReturn: '',
+        dividendYield: this.portfolioForm.value.dividendYield,
+        volatility: this.portfolioForm.value.volatility,
+        expectedReturn: this.portfolioForm.value.expectedReturn,
         totalShares: '',
       });
     }

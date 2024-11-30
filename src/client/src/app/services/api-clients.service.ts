@@ -2,6 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Client} from '../types/client-type';
+import {Stock} from '../types/OwnedStock-type';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +15,27 @@ export class ApiClientsService {
     return this.http.get<Client[]>('http://localhost:3000/api/clients');
   }
 
-  create(client: Client): Observable<number> {
-    return this.http.post<number>('http://localhost:3000/api/clients', client);
+  create(client: Client): Observable<Client> {
+    return this.http.post<Client>('http://localhost:3000/api/clients', client);
   }
 
-  delete(email: string) {
-    return this.http.delete<number>(`http://localhost:3000/api/clients/${email}`);
+  delete(email: string): Observable<Client> {
+    return this.http.delete<Client>(`http://localhost:3000/api/clients/${email}`);
   }
 
   update(email: string, client: Partial<Client>) : Observable<Client> {
     return this.http.put<Client>(`http://localhost:3000/api/clients/${email}`, client);
   }
 
+  getClientStocks(): Observable<Stock[]> {
+    return this.http.get<Stock[]>(`http://localhost:3000/api/client/stocks`);
+  }
+
+  buyStock(email: string, stockData: any): Observable<any> {
+    return this.http.post(`http://localhost:3000/api/clients/${email}/invest`, stockData);
+  }
+
+  sellStock(email: string, stockData: any): Observable<any> {
+    return this.http.post(`http://localhost:3000/api/clients/${email}/sell`, stockData);
+  }
 }

@@ -5,6 +5,7 @@ import {Column} from '../../types/column.type';
 import {TableComponent} from '../../components/table/table.component';
 import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Modal } from 'bootstrap';
+import {CarouselComponent} from '../../components/carousel/carousel.component';
 
 @Component({
   selector: 'app-client-list',
@@ -12,11 +13,41 @@ import { Modal } from 'bootstrap';
     TableComponent,
     TableComponent,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CarouselComponent
   ],
   templateUrl: './client-list.component.html',
+  styleUrl: './client-list.component.scss',
+
 })
 export class ClientListComponent implements OnInit{
+
+  carouselImages = [
+    {
+      src: '/images/Client.jpeg',
+      alt: 'Dynamic Stock Analysis',
+      title: 'Dynamic Stock Analysis',
+      caption: 'Analyze stocks with advanced tools and dynamic updates.',
+      width: '1600',
+      height: '900',
+    },
+    {
+      src: '/images/Invest.jpg',
+      alt: 'Efficient Portfolio Management',
+      title: 'Efficient Portfolio Management',
+      caption: "Streamline portfolio handling for better decision-making.",
+      width: '1400',
+      height: '934',
+    },
+    {
+      src: '/images/Bank_account.jpeg',
+      alt: 'Simulate Growth Scenarios',
+      title: 'Simulate Growth Scenarios',
+      caption: 'Predict portfolio growth under various market conditions.',
+      width: '3200',
+      height: '1800',
+    },
+  ];
 
   private formBuilder = inject(FormBuilder); // kvoli modalu
   private clientService = inject(ApiClientsService);

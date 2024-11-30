@@ -5,7 +5,7 @@ $input-bg: #dfd482;
 $blockquote-footer-color: #ffd800;
 
 $success: #dfd482;
-$warning: #bd851d;
+$warning: #d5982d;
 $primary-bg-subtle: #efd2a4;
 
 $placeholder-opacity-max: 0.1;
@@ -42,7 +42,8 @@ $table-border-width: 2px;
 $table-border-factor: 0.5;
 
 $carousel-transition-duration: 1s;
-$carousel-dark-caption-color: #ffffff;
+$carousel-dark-caption-color: #fb2828;
+$carousel-caption-color: #fbd228;
 
 .carousel-caption {
   font-size: 1.5rem;
@@ -92,7 +93,7 @@ $card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
 // Light mode styles
 [data-bs-theme="light"] body {
-  background: linear-gradient(270deg, #285daf, #0ae3f8, #0cb1ec);
+  background: linear-gradient(270deg, #8cb3ef, #0ae3f8, #0cb1ec);
   background-size: 300% 300%;
   animation: gradientShift 10s ease infinite;
 }

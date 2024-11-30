@@ -4,12 +4,14 @@ import {ApiClientsService} from '../../services/api-clients.service';
 import {Client} from '../../types/client-type';
 import {Router} from '@angular/router';
 import {NgClass} from '@angular/common';
+import {CarouselComponent} from '../../components/carousel/carousel.component';
 
 @Component({
   selector: 'app-add-client',
   imports: [
     ReactiveFormsModule,
-    NgClass
+    NgClass,
+    CarouselComponent
   ],
   templateUrl: './add-client.component.html',
 })
