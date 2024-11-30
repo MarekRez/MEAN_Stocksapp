@@ -1,38 +1,39 @@
 <div class="d-flex flex-column min-vh-100">
   <div class="container mt-5">
     <div class="row text-center">
+
       <div class="col-md-4 mb-3">
-        <div class="card shadow-lg text-bg-secondary p-4 w-100" style="max-width: 800px;">
+        <div class="card shadow-lg text-bg-secondary p-4 w-100" style="max-width: 350px;">
           <div class="card-body">
             <h5 class="card-title text-black fw-bold mb-4">Buy Stocks</h5>
-            <form id="buyForm">
+            <form id="buyForm" [formGroup]="buyForm" (ngSubmit)="buyStock()">
               <div class="mb-3">
-                <label for="buyStockSymbol" class="form-label">Stock Symbol</label>
-                <input type="text" id="buyStockSymbol" class="form-control" placeholder="e.g., AAPL" required>
+                <label for="stockSymbol" class="form-label">Stock Symbol</label>
+                <input type="text" id="stockSymbol" formControlName="stockSymbol" class="form-control" placeholder="AAPL" />
               </div>
               <div class="mb-3">
                 <label for="currency" class="form-label">Currency</label>
-                <input type="text" id="currency" class="form-control" placeholder="e.g., USD" required>
+                <input type="text" id="currency" formControlName="currency" class="form-control" placeholder="USD" />
               </div>
               <div class="mb-3">
                 <label for="stockPrice" class="form-label">Stock Price</label>
-                <input type="number" id="stockPrice" class="form-control" placeholder="e.g., 150" required>
+                <input type="number" id="stockPrice" formControlName="stockPrice" class="form-control" placeholder="150" min="0" step="100"/>
               </div>
               <div class="mb-3">
                 <label for="dividendYield" class="form-label">Dividend Yield</label>
-                <input type="number" id="dividendYield" class="form-control" step="0.01" placeholder="e.g., 0.02" required>
+                <input type="number" id="dividendYield" formControlName="dividendYield" class="form-control" placeholder="0.02" min="0" max="1" step="0.1"/>
               </div>
               <div class="mb-3">
                 <label for="volatility" class="form-label">Volatility</label>
-                <input type="number" id="volatility" class="form-control" step="0.01" placeholder="e.g., 0.7" required>
+                <input type="number" id="volatility" formControlName="volatility" class="form-control" placeholder="0.7" min="0" max="1" step="0.1"/>
               </div>
               <div class="mb-3">
                 <label for="expectedReturn" class="form-label">Expected Return</label>
-                <input type="number" id="expectedReturn" class="form-control" step="0.01" placeholder="e.g., 0.8" required>
+                <input type="number" id="expectedReturn" formControlName="expectedReturn" class="form-control" placeholder="0.8" min="0" max="1" step="0.1"/>
               </div>
               <div class="mb-3">
-                <label for="investmentAmount" class="form-label">Investment Amount</label>
-                <input type="number" id="investmentAmount" class="form-control" placeholder="e.g., 1000" required>
+                <label for="amount" class="form-label">Investment Amount</label>
+                <input type="number" id="amount" formControlName="amount" class="form-control" placeholder="1000" min="0" step="100"/>
               </div>
               <button type="submit" class="btn btn-info w-25 mt-3">Buy</button>
             </form>
@@ -40,24 +41,44 @@
         </div>
       </div>
 
-      <div class="col-md-4 mb-3 d-flex justify-content-center align-items-center">
-        <div class="p-1 shadow-lg" style="border: 3px solid #105da8; border-radius: 10px; background-color: #ffa500;">
-          <img ngSrc="/images/Stock_chart.png" alt="Stock Chart" width="600" height="360" style="max-width: 100%; height: auto; border-radius: 10px;">
+      <div class="col-md-4 mb-3 d-flex flex-column" >
+        <div class="card shadow-lg text-bg-secondary p-4 w-100" style="max-width: 350px;">
+          <div class="card-body">
+            <h5 class="card-title text-black fw-bold mb-4">Client Email</h5>
+            <form id="emailForm" [formGroup]="emailForm">
+              <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  formControlName="email"
+                  class="form-control"
+                  placeholder="rezny.marek@gmail.com"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="flex-grow-1 d-flex align-items-end mt-3">
+          <div class="p-1 shadow-lg w-100" style="border: 3px solid #105da8; border-radius: 10px; background-color: #ffa500;">
+            <img ngSrc="/images/Stock_chart.png" alt="Stock Chart" width="600" height="360" style="max-width: 100%; height: auto; border-radius: 10px;">
+          </div>
         </div>
       </div>
 
       <div class="col-md-4 mb-3">
-        <div class="card shadow-lg text-bg-secondary p-4 w-100" style="max-width: 800px;">
+        <div class="card shadow-lg text-bg-secondary p-4 w-100" style="max-width: 350px;">
           <div class="card-body">
             <h5 class="card-title text-black fw-bold mb-4">Sell Stocks</h5>
-            <form id="sellForm">
+            <form id="sellForm" [formGroup]="sellForm" (ngSubmit)="sellStock()">
               <div class="mb-3">
                 <label for="sellStockSymbol" class="form-label">Stock Symbol</label>
-                <input type="text" id="sellStockSymbol" class="form-control" placeholder="e.g., AAPL" required>
+                <input type="text" id="sellStockSymbol" formControlName="stockSymbol" class="form-control" placeholder="AAPL" />
               </div>
               <div class="mb-3">
                 <label for="sharesToSell" class="form-label">Shares to Sell</label>
-                <input type="number" id="sharesToSell" class="form-control" placeholder="e.g., 6" required>
+                <input type="number" id="sharesToSell" formControlName="sharesToSell" class="form-control" placeholder="6" min="1" step="1"/>
               </div>
               <button type="submit" class="btn btn-danger w-25 mt-3">Sell</button>
             </form>
@@ -65,5 +86,51 @@
         </div>
       </div>
     </div>
+
+    <div class="container mt-5 mb-5 d-flex border-0 justify-content-center align-items-center">
+      <div class="card shadow-lg text-bg-secondary p-4 w-100" style="max-width: 1000px;">
+        <div class="card-body">
+          <h2 class="text-center mb-5 text-black fw-bold">Zoznam akcií klientov</h2>
+
+          @if (isLoading) {
+            <div class="text-center text-muted fs-5 py-3">
+              Načítavam ...
+            </div>
+
+          } @else {
+            <form id="searchForm" class="mb-5 pb-3">
+              <div class="input-group">
+                <input
+                  type="text"
+                  id="searchInput"
+                  class="form-control"
+                  placeholder="Hľadať podľa emailu..."
+
+                  [(ngModel)]="search"
+
+                  name="search"
+                  aria-label="Search"
+                />
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  id="searchButton"
+
+                  (click)="searchStocks()"
+                >
+                  Hľadať
+                </button>
+              </div>
+            </form>
+
+            <app-table
+              [columns]="clientsColumns"
+              [rows]="filteredRows"
+            ></app-table>
+          }
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

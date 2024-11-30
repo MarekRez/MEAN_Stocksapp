@@ -199,7 +199,7 @@ app.post(`${API}/clients/:email/invest`, (req: Request, res: Response) => {
 });
 
 // POST - vytiahnutie penazi z akcie
-app.post('/api/clients/:email/sell', (req: Request, res: Response): void => {
+app.post(`${API}/clients/:email/sell`, (req: Request, res: Response): void => {
     const email: string = req.params.email;
     const { stockSymbol, sharesToSell } = req.body;
 
@@ -279,7 +279,12 @@ app.post(`${API}/portfolio`, (req: Request, res: Response): void => {
     let simulationResults: any[] = [];
     console.log(portfolio);
 
-    console.log = (output) => simulationResults.push(output);
+    const originalConsoleLog = console.log;
+
+    console.log = (output) => {
+        simulationResults.push(output);
+        originalConsoleLog(output);
+    };
 
     portfolio.simulateMonths(months, showInfo);
 
@@ -295,6 +300,27 @@ app.post(`${API}/portfolio`, (req: Request, res: Response): void => {
     });
 });
 
+app.get(`${API}/client/stocks`, (req: Request, res: Response) => {
+
+    const allClients = clients.getAllClients();
+    const stocksData = allClients.map(client => {
+        return client.getInvestmentAccount().getStocks().map(stock => ({
+            email: client.getEmail(),
+            stockSymbol: stock.name,
+            shares: stock.totalShares,
+        }));
+    });
+
+    // danie vnorených polí do jedného poľa
+    const flattenedData = stocksData.flat();
+
+    if (flattenedData.length === 0) {
+        res.json([]); // vrati prazdne pole ak nie su ziadne akcie
+        return
+    }
+
+    res.json(flattenedData);
+});
 
 app.listen(port, () => {
     console.log(`Server is WORKING at http://localhost:${port}/`);
