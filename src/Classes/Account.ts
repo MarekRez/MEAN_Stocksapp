@@ -105,6 +105,7 @@ export class Account {
     public withdraw(amount: number): boolean {
         if (amount <= this.balance) {
             this.balance -= amount;
+            this.bankAccount.deposit(amount);
             console.log(`Withdrawn ${amount.toFixed(2)} from account. New balance: ${this.balance.toFixed(2)}`);
             return true;
         } else {

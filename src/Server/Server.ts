@@ -327,7 +327,7 @@ app.get(`${API}/client/stocks`, (req: Request, res: Response) => {
 // POST - deposit penazi na bankový účet
 app.post(`${API}/clients/:iban/bank/deposit`, (req: Request, res: Response) => {
     const iban = req.params.iban;
-    const  amount  = req.body;
+    const { amount } = req.body;
 
     if (!amount || amount <= 0) {
         res.status(400).json({ error: 'Invalid deposit amount' });
@@ -350,7 +350,7 @@ app.post(`${API}/clients/:iban/bank/deposit`, (req: Request, res: Response) => {
 // POST - vytiahnutie penazi z bankového účtu
 app.post(`${API}/clients/:iban/bank/withdraw`, (req: Request, res: Response) => {
     const iban = req.params.iban;
-    const amount = req.body;
+    const { amount } = req.body;
 
     if (!amount || amount <= 0) {
         res.status(400).json({ error: 'Invalid withdrawal amount' });
@@ -380,7 +380,7 @@ app.post(`${API}/clients/:iban/bank/withdraw`, (req: Request, res: Response) => 
 // POST - deposit penazi na investičný účet
 app.post(`${API}/clients/:iban/investment/deposit`, (req: Request, res: Response) => {
     const iban = req.params.iban;
-    const amount = req.body;
+    const { amount } = req.body;
 
     if (!amount || amount <= 0) {
         res.status(400).json({ error: 'Invalid deposit amount' });
@@ -403,7 +403,7 @@ app.post(`${API}/clients/:iban/investment/deposit`, (req: Request, res: Response
 // POST - vytiahnutie penazi z investičného účtu
 app.post(`${API}/clients/:iban/investment/withdraw`, (req: Request, res: Response) => {
     const iban = req.params.iban;
-    const amount = req.body;
+    const { amount } = req.body;
 
     if (!amount || amount <= 0) {
         res.status(400).json({ error: 'Invalid withdrawal amount' });

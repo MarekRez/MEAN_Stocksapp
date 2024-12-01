@@ -4,17 +4,40 @@
       <div class="card-body">
         <h2 class="text-center mb-5 text-black fw-bold">Bankový a Investičný Účet</h2>
 
+        <form [formGroup]="ibanForm" class="mb-5">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="mb-3">
+                <label for="iban" class="form-label text-center">IBAN</label>
+                <input
+                  type="text"
+                  id="iban"
+                  formControlName="iban"
+                  class="form-control text-center"
+                  placeholder="Zadajte váš IBAN"
+                />
+
+                @if (ibanForm.get('iban')!.invalid && ibanForm.get('iban')?.touched) {
+                  <div class="text-danger text-center mt-2">
+                    Prosím, zadajte platný IBAN.
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </form>
+
         <div class="row">
           <div class="col-md-6">
             <h4 class="text-center text-primary">Bankový Účet</h4>
-            <form id="bankAccountForm">
+            <form id="bankAccountForm" [formGroup]="bankAccountForm">
               <div class="mb-3">
                 <label for="bankAmount" class="form-label">Suma (€)</label>
-                <input type="number" id="bankAmount" step="10" class="form-control" placeholder="Zadajte sumu" required>
+                <input type="number" id="bankAmount" step="100" min="0" formControlName="amount" class="form-control" placeholder="Zadajte sumu" required>
               </div>
               <div class="d-flex justify-content-between">
-                <button type="submit" class="btn btn-info" id="depositBank">Vklad</button>
-                <button type="submit" class="btn btn-danger" id="withdrawBank">Výber</button>
+                <button type="submit" class="btn btn-info" (click)="depositToBank()" id="depositBank">Vklad</button>
+                <button type="submit" class="btn btn-danger" id="withdrawBank" (click)="withdrawFromBank()">Výber</button>
               </div>
             </form>
           </div>
@@ -22,14 +45,14 @@
 
           <div class="col-md-6">
             <h4 class="text-center text-primary">Investičný Účet</h4>
-            <form id="investmentAccountForm">
+            <form id="investmentAccountForm"  [formGroup]="investmentAccountForm">
               <div class="mb-3">
                 <label for="investmentAmount" class="form-label">Suma (€)</label>
-                <input type="number" id="investmentAmount" step="10" class="form-control" placeholder="Zadajte sumu" required>
+                <input type="number" id="investmentAmount" step="100"  min="0" formControlName="amount" class="form-control" placeholder="Zadajte sumu" required>
               </div>
               <div class="d-flex justify-content-between">
-                <button type="submit" class="btn btn-info" id="depositInvestment">Vklad</button>
-                <button type="submit" class="btn btn-danger" id="withdrawInvestment">Výber</button>
+                <button type="submit" class="btn btn-info" (click)="depositToInvestment()" id="depositInvestment">Vklad</button>
+                <button type="submit" class="btn btn-danger" (click)="withdrawFromInvestment()" id="withdrawInvestment">Výber</button>
               </div>
             </form>
           </div>
