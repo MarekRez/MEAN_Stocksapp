@@ -32,7 +32,7 @@ export class Account {
                     this.stocks.push(stock);
                 }
 
-                const investmentRecord = new InvestmentRecord(stock, sharesToBuy, stock.stockPrice, "buy");
+                const investmentRecord = new InvestmentRecord(stock.name, sharesToBuy, stock.stockPrice, "buy");
                 this.investmentHistory.push(investmentRecord);
 
                 return { success: true, leftover };
@@ -59,7 +59,7 @@ export class Account {
             this.balance += cashReceived;
 
             // Zaznamena transakciu do investicneho zaznamu
-            const investmentRecord = new InvestmentRecord(stock, sharesToSell, stock.stockPrice, "sell");
+            const investmentRecord = new InvestmentRecord(stock.name, sharesToSell, stock.stockPrice, "sell");
             this.investmentHistory.push(investmentRecord);
 
             // Odstrani akciu, ak uz nemame ziadne podiely
@@ -114,11 +114,11 @@ export class Account {
         }
     }
 
-    public calculatePortfolioValue(): number {
-        let totalValue = 0;
-        this.investmentHistory.forEach(record => {
-            totalValue += record.shares * record.price;
-        });
-        return totalValue;
-    }
+    // public calculatePortfolioValue(): number {
+    //     let totalValue = 0;
+    //     this.investmentHistory.forEach(record => {
+    //         totalValue += record.shares * record.price;
+    //     });
+    //     return totalValue;
+    // }
 }

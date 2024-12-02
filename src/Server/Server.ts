@@ -430,6 +430,37 @@ app.post(`${API}/clients/:iban/investment/withdraw`, (req: Request, res: Respons
     }
 });
 
+// GET - kontrola existencie klienta podla emailu pre stranku s nakupom akcii
+app.get(`${API}/clients/exists/:email`, (req: Request, res: Response) => {
+    const email = req.params.email;
+    const clientExists = clients.getClientByEmail(email) !== undefined;
+
+    res.json({ exists: clientExists });
+});
+
+// GET - ziskanie historie investovania klienta - akcie
+app.get(`${API}/clients/:email/investment/history`, (req: Request, res: Response) => {
+    const email = req.params.email;
+
+    const client = clients.getAllClients().find(client => client.getEmail() === email);
+
+    if (!client) {
+        res.status(404).json({ error: 'Client not found' });
+        return
+    }
+
+    const history = client.getInvestmentAccount().getInvestmentHistory();
+
+    if (!history.length) {
+        res.status(200).json({ message: 'No transaction history found', history: [] });
+        return
+    }
+
+    res.status(200).json({
+        history
+    });
+});
+
 app.listen(port, () => {
     console.log(`Server is WORKING at http://localhost:${port}/`);
 });

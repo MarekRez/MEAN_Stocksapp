@@ -3,6 +3,10 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Client} from '../types/client-type';
 import {Stock} from '../types/OwnedStock-type';
+import {StockTransactionResult} from '../types/stockTransactionResult-type';
+import {TransactionResult} from '../types/transactionResult-type';
+import {InvestmentRecord} from '../types/investmentRecord-type';
+import {StockData} from '../types/stockdata-type';
 
 @Injectable({
   providedIn: 'root'
@@ -31,27 +35,34 @@ export class ApiClientsService {
     return this.http.get<Stock[]>(`http://localhost:3000/api/client/stocks`);
   }
 
-  buyStock(email: string, stockData: any): Observable<any> {
-    return this.http.post(`http://localhost:3000/api/clients/${email}/invest`, stockData);
+  buyStock(email: string, stockData: StockData): Observable<StockTransactionResult> {
+    return this.http.post<StockTransactionResult>(`http://localhost:3000/api/clients/${email}/invest`, stockData);
   }
 
-  sellStock(email: string, stockData: any): Observable<any> {
-    return this.http.post(`http://localhost:3000/api/clients/${email}/sell`, stockData);
+  sellStock(email: string, stockData: StockData): Observable<StockTransactionResult> {
+    return this.http.post<StockTransactionResult>(`http://localhost:3000/api/clients/${email}/sell`, stockData);
   }
-  depositToBank(iban: string, amount: number): Observable<any> {
-    return this.http.post<any>(`http://localhost:3000/api/clients/${iban}/bank/deposit`, {amount} );
-  }
-
-  withdrawFromBank(iban: string, amount: number): Observable<any> {
-    return this.http.post<any>(`http://localhost:3000/api/clients/${iban}/bank/withdraw`, {amount});
+  depositToBank(iban: string, amount: number): Observable<TransactionResult> {
+    return this.http.post<TransactionResult>(`http://localhost:3000/api/clients/${iban}/bank/deposit`, {amount} );
   }
 
-  depositToInvestment(iban: string, amount: number): Observable<any> {
-    return this.http.post<any>(`http://localhost:3000/api/clients/${iban}/investment/deposit`, {amount});
+  withdrawFromBank(iban: string, amount: number): Observable<TransactionResult> {
+    return this.http.post<TransactionResult>(`http://localhost:3000/api/clients/${iban}/bank/withdraw`, {amount});
   }
 
-  withdrawFromInvestment(iban: string, amount: number): Observable<any> {
-    return this.http.post<any>(`http://localhost:3000/api/clients/${iban}/investment/withdraw`, {amount});
+  depositToInvestment(iban: string, amount: number): Observable<TransactionResult> {
+    return this.http.post<TransactionResult>(`http://localhost:3000/api/clients/${iban}/investment/deposit`, {amount});
+  }
+
+  withdrawFromInvestment(iban: string, amount: number): Observable<TransactionResult> {
+    return this.http.post<TransactionResult>(`http://localhost:3000/api/clients/${iban}/investment/withdraw`, {amount});
+  }
+
+  checkEmailExists(email: string): Observable<{ exists: boolean }> {
+    return this.http.get<{ exists: boolean }>(`http://localhost:3000/api/clients/exists/${email}`);
+  }
+  getInvestmentHistory(email: string): Observable<{ history: InvestmentRecord[] }> {
+    return this.http.get<{ history: InvestmentRecord[] }>(`http://localhost:3000/api/clients/${email}/investment/history`);
   }
 
 }

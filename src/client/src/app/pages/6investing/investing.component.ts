@@ -1,11 +1,12 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
 import {TableComponent} from '../../components/table/table.component';
 import {Column} from '../../types/column.type';
 import {ApiClientsService} from '../../services/api-clients.service';
 import {Stock} from '../../types/OwnedStock-type';
+import { Modal } from 'bootstrap';
+import {InvestmentRecord} from '../../types/investmentRecord-type';
 
 @Component({
   selector: 'app-investing',
@@ -33,6 +34,10 @@ export class InvestingComponent implements OnInit {
 
   isLoading: boolean = false;
   search: string = '';
+  emailError: string | null = null;
+
+  history: InvestmentRecord[] = [];
+  historyModal!: Modal;
 
   emailForm: FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -120,6 +125,55 @@ export class InvestingComponent implements OnInit {
       this.filteredRows = this.rows.filter((row) =>
         row.email.toLowerCase().includes(searchTerm)
         )
+    }
+  }
+
+  checkEmail(): void {
+    const email = this.emailForm.get('email')?.value;
+    if (!email) {
+      this.emailError = 'Email is required.';
+      return;
+    }
+
+    this.clientService.checkEmailExists(email).subscribe({
+      next: (response) => {
+        this.emailError = response.exists
+          ? null
+          : 'This email does not exist. Please register first.';
+      },
+      error: () => {
+        this.emailError = 'There was a problem checking the email. Try again.';
+      },
+    });
+  }
+
+  fetchInvestmentHistory() {
+    const email = this.emailForm.get('email')?.value;
+
+    if (!email) {
+      console.error('Email is required to fetch transaction history');
+      return;
+    }
+
+    this.isLoading = true;
+    this.clientService.getInvestmentHistory(email).subscribe({
+      next: (response) => {
+        this.history = response.history;
+        this.isLoading = false;
+        this.showHistoryModal();
+      },
+      error: (error) => {
+        console.error('Failed to fetch transaction history', error);
+        this.isLoading = false;
+      },
+    });
+  }
+
+  showHistoryModal() {
+    const modalElement = document.getElementById('transactionHistoryModal');
+    if (modalElement) {
+      this.historyModal = new Modal(modalElement);
+      this.historyModal.show();
     }
   }
 

@@ -3,7 +3,6 @@ import {PortfolioService} from '../../services/portfolio.service';
 import {StockData} from '../../types/stockdata-type';
 import { Modal } from 'bootstrap';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {StockSymbol} from '../../../../../Enums/StockSymbol';
 
 @Component({
   selector: 'app-portfolio',
@@ -13,8 +12,6 @@ import {StockSymbol} from '../../../../../Enums/StockSymbol';
   templateUrl: './portfolio.component.html',
 })
 export class PortfolioComponent {
-
-  stockSymbols = Object.values(StockSymbol); // konverzia enumu na pole hodnot
 
   private formBuilder = inject(FormBuilder);
   private portfolioService = inject(PortfolioService);

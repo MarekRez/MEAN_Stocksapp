@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './footer.component.html',
 })
 export class FooterComponent {
-  brand = '© 2024 StocksByMarek. All rights reserved.';
+  brand = '© 2024 StocksByMarek. Some rights reserved.';
   contactEmail = 'support@stocksbymarek.com';
 }

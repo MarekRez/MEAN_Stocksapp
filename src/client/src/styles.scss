@@ -2,6 +2,10 @@
 $body-bg: #105da8;
 $input-bg: #dfd482;
 
+.card.text-bg-secondary {
+  background-color: rgb(115, 117, 120) !important;
+}
+
 $blockquote-footer-color: #ffd800;
 
 $success: #dfd482;
@@ -59,9 +63,9 @@ $carousel-caption-color: #fbd228;
 }
 
 // these dont work for some reason
-$card-bg-dark: #a8a0a0;
-$card-color-dark: #0707ca;
-$card-border-color-dark: #d5dd47;
+//$card-bg-dark: #a8a0a0;
+//$card-color-dark: #0707ca;
+//$card-border-color-dark: #d5dd47;
 
 $table-color: #090043;
 
@@ -100,7 +104,7 @@ $card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
 // Dark mode styles
 [data-bs-theme="dark"] body {
-  background: linear-gradient(270deg, #070d53, rgb(12, 20, 51), #111111);
+  background: linear-gradient(270deg, #000000, rgb(0, 4, 21), #201e1e);
   background-size: 300% 300%;
   animation: gradientShift 10s ease infinite;
 }

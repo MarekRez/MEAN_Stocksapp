@@ -1,8 +1,6 @@
-import {StockSymbol} from '../../../../Enums/StockSymbol';
-
 export type StockData = {
 
-  stockSymbol: StockSymbol;
+  stockSymbol: string;
   currency: string;
   stockPrice: number;
   dividendYield: number;

@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ApiClientsService} from '../../services/api-clients.service';
 
@@ -9,7 +9,7 @@ import {ApiClientsService} from '../../services/api-clients.service';
   ],
   templateUrl: './accounts.component.html',
 })
-export class AccountsComponent {
+export class AccountsComponent implements OnInit {
 
   private formBuilder = inject(FormBuilder);
   private clientsService = inject(ApiClientsService);
@@ -105,6 +105,30 @@ export class AccountsComponent {
           this.isLoading = false;
         },
       });
+    }
+  }
+
+  saveIban(): void {
+    const iban = this.ibanForm.get('iban')!.value;
+    if (iban) {
+      sessionStorage.setItem('selectedIban', iban);
+      console.log(`IBAN ${iban} saved to sessionStorage`);
+    }
+  }
+
+  ngOnInit(): void {
+    this.ibanForm.get('iban')?.valueChanges.subscribe(() => {
+      this.saveIban();
+    });
+
+    this.loadIban();
+  }
+
+  loadIban(): void {
+    const savedIban = sessionStorage.getItem('selectedIban');
+    if (savedIban) {
+      this.ibanForm.get('iban')?.setValue(savedIban);
+      console.log(`IBAN ${savedIban} loaded from sessionStorage`);
     }
   }
 }

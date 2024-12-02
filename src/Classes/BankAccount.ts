@@ -9,7 +9,7 @@ export class BankAccount {
 
     // IBAN na zakladem random z pismen a cislic
     private generateIBAN(): string {
-        const characters = '0123456789000000  ';
+        const characters = '0123456789000000';
         let iban = 'SK-';
         for (let i = 0; i < 16; i++) {
             iban += characters.charAt(Math.floor(Math.random() * characters.length)); // charAt zoberie index a priradi zo zonamu characters char, math.random vrati cislo od 0 do 1 a nasledne krat dlzka pola-stringu characters
