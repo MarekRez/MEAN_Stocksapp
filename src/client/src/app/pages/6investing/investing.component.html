@@ -101,6 +101,36 @@
       </div>
     </div>
 
+    <div class="container mt-5">
+      <h3 class="text-center text-primary mb-4">O stránke Investovanie</h3>
+      <p>
+        Vitajte na stránke Investovanie! Táto platforma je navrhnutá tak, aby vám poskytla komplexné nástroje na správu a rast vášho investičného portfólia. Či už ste skúsený investor, alebo len začínate, naše intuitívne rozhranie vám umožní jednoducho vykonávať základné úlohy, ako je nákup a predaj akcií, prezeranie histórie transakcií a analýza výkonnosti vašich investícií.
+      </p>
+      <p>
+        Na tejto stránke môžete:
+      </p>
+      <ul>
+        <li>
+          <strong>Kúpiť akcie:</strong> Použite formulár na výber akcie, zadajte kľúčové parametre, ako je výška investície, a vykonajte nákup priamo do vášho investičného účtu.
+        </li>
+        <li>
+          <strong>Predať akcie:</strong> Jednoducho predajte podiely z vašich investícií na vyváženie portfólia alebo realizáciu zisku. Proces je rýchly a jednoduchý.
+        </li>
+        <li>
+          <strong>História transakcií:</strong> Sledujte všetky svoje investičné transakcie vrátane detailov o kúpených a predaných akciách, aby ste mali jasný prehľad a poriadok.
+        </li>
+        <li>
+          <strong>Zobrazenie držaných akcií:</strong> Prezrite si tabuľku, ktorá obsahuje aktuálny zoznam vašich akcií, vrátane detailov, ako sú názvy akcií, ich cena, počet podielov a ďalšie informácie o výkonnosti.
+        </li>
+      </ul>
+      <p>
+        Naším cieľom je umožniť vám prevziať kontrolu nad vašou finančnou budúcnosťou. Nástroje na tejto stránke sú navrhnuté tak, aby vám poskytli cenné informácie a pomohli vám robiť rozhodnutia založené na údajoch, ktoré podporia vaše investičné ciele.
+      </p>
+      <p>
+        Preskúmajte všetky funkcie, skúste rôzne stratégie a maximalizujte potenciál svojich investícií. Prajeme vám úspešné investovanie!
+      </p>
+    </div>
+
     <div class="container mt-5 mb-5 d-flex border-0 justify-content-center align-items-center">
       <div class="card shadow-lg text-bg-secondary p-4 w-100" style="max-width: 1000px;">
         <div class="card-body">
@@ -159,7 +189,7 @@
       <div class="modal-body">
         @if (history.length > 0) {
           <div class="table-responsive">
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered border-black table-hover text-dark">
               <thead>
               <tr>
                 <th>#</th>
@@ -178,7 +208,7 @@
                     <td>{{ record.price }}</td>
                     <td>
                       @if (record.type === 'buy') {
-                        <span class="badge bg-success">Buy</span>
+                        <span class="badge bg-info">Buy</span>
                       } @else if (record.type === 'sell') {
                         <span class="badge bg-danger">Sell</span>
                       }
