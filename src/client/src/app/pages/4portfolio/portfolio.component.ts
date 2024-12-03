@@ -10,6 +10,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
     ReactiveFormsModule
   ],
   templateUrl: './portfolio.component.html',
+  standalone: true
 })
 export class PortfolioComponent {
 

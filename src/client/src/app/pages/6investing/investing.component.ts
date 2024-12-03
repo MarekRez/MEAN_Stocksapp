@@ -17,6 +17,7 @@ import {InvestmentRecord} from '../../types/investmentRecord-type';
     FormsModule
   ],
   templateUrl: './investing.component.html',
+  standalone: true
 })
 export class InvestingComponent implements OnInit {
 

@@ -12,6 +12,7 @@ import {ThemeService} from '../../services/theme.service';
     RouterLinkActive
   ],
   templateUrl: './header.component.html',
+  standalone: true
 })
 export class HeaderComponent {
   brand = 'StocksByMarek';

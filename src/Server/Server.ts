@@ -264,7 +264,7 @@ app.post(`${API}/portfolio`, (req: Request, res: Response): void => {
     // pridanie akcii do portfolia
     stocks.forEach((stockData: StockData) => {
         const stock = new Stock(
-            stockData.stockSymbol,
+            stockData.stockSymbol as StockSymbol,
             stockData.currency,
             stockData.stockPrice,
             stockData.dividendYield,

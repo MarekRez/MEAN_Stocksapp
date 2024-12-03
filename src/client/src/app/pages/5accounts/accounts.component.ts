@@ -8,6 +8,7 @@ import {ApiClientsService} from '../../services/api-clients.service';
     ReactiveFormsModule
   ],
   templateUrl: './accounts.component.html',
+  standalone: true
 })
 export class AccountsComponent implements OnInit {
 

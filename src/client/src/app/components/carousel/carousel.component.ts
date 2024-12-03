@@ -4,6 +4,7 @@ import {Component, Input} from '@angular/core';
   selector: 'app-carousel',
   imports: [],
   templateUrl: './carousel.component.html',
+  standalone: true
 })
 export class CarouselComponent {
   @Input() images: { src: string; alt: string; title: string; caption: string; width?: string; height?: string }[] = [];

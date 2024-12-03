@@ -8,6 +8,7 @@ import {ThemeService} from './services/theme.service';
   selector: 'app-root',
   imports: [RouterOutlet, HeaderComponent, RouterOutlet, FooterComponent],
   templateUrl: './app.component.html',
+  standalone: true,
   styleUrl: './app.component.scss'
 })
 export class AppComponent {

@@ -52,7 +52,7 @@ console.log(`\nAccount Balance after Withdrawals: ${InvestmentAccount1.getBalanc
 // investicna historia
 console.log("\nInvestment History:");
 InvestmentAccount1.getInvestmentHistory().forEach(record => {
-    console.log(`${record.type} - ${record.shares} shares of ${record.stock.name} at ${record.price.toFixed(2)} each.`);
+    console.log(`${record.type} - ${record.shares} shares of ${record.stock} at ${record.price.toFixed(2)} each.`);
 });
 
 // Ak zadáme simuláciu s parametrom false, tak vypíše konečný stav portfólia

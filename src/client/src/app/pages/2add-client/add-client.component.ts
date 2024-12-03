@@ -12,6 +12,7 @@ import {NgClass} from '@angular/common';
     NgClass,
   ],
   templateUrl: './add-client.component.html',
+  standalone: true
 })
 export class AddClientComponent {
 

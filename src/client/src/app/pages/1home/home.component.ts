@@ -8,6 +8,7 @@ import {CarouselComponent} from '../../components/carousel/carousel.component';
     CarouselComponent
   ],
   templateUrl: './home.component.html',
+  standalone: true
 })
 export class HomeComponent {
   title = 'Stock Market Insights';
