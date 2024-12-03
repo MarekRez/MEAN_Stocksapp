@@ -8,6 +8,7 @@ import {NgClass} from '@angular/common';
     NgClass
   ],
   templateUrl: './table.component.html',
+  standalone: true
 })
 export class TableComponent<T> {
 
