@@ -1,5 +1,3 @@
-import { Stock } from './Stock';
-
 // ukladame sem udaje o akciach
 export class InvestmentRecord {
     public stock: string;

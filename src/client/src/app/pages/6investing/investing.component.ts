@@ -38,7 +38,7 @@ export class InvestingComponent implements OnInit {
   emailError: string | null = null;
 
   history: InvestmentRecord[] = [];
-  historyModal!: Modal;
+  historyModal:  Modal | null = null;
 
   emailForm: FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {NgOptimizedImage} from '@angular/common';
 import {CarouselComponent} from '../../components/carousel/carousel.component';
 
 @Component({
