@@ -46,64 +46,82 @@ This document describes the API endpoints for managing clients and their investm
       "investmentAccountBalance": 2000
     }
   ]
-2. GET /api/clients/:email
-   Description: Retrieves a specific client by their email.
-   Method: GET
-   URL: /api/clients/:email
-   Request Parameters:
-   email (string) - The email of the client to retrieve.
-   Request Body: None
-   Response:
-   Success (200):
-   {
-   "name": "John Doe",
-   "email": "john@example.com",
-   "bankAccountBalance": 5000,
-   "investmentAccountBalance": 2000
-   }
-   Error (404):
-   { "error": "Client not found" }
-3. POST /api/clients
-   Description: Adds a new client to the system.
-   Method: POST
-   URL: /api/clients
-   Request Parameters: None
-   Request Body:
-   {
-   "name": "John Doe",
-   "email": "john@example.com",
-   "bankAccountBalance": 5000,
-   "investmentAccountBalance": 2000
-   }
-   Response (201):
-   {
-   "name": "John Doe",
-   "email": "john@example.com",
-   "bankAccountBalance": 5000,
-   "investmentAccountBalance": 2000
-   }
-4. PUT /api/clients/:email
-   Description: Updates an existing client’s information.
-   Method: PUT
-   URL: /api/clients/:email
-   Request Parameters:
-   email (string) - The email of the client to update.
-   Request Body:
-   {
-   "name": "John Smith",
-   "bankAccountBalance": 10000,
-   "investmentAccountBalance": 3000
-   }
-   Response:
-   Success (200):
-   {
-   "name": "John Smith",
-   "email": "john@example.com",
-   "bankAccountBalance": 10000,
-   "investmentAccountBalance": 3000
-   }
-   Error (404):
-   { "error": "Client not found" }
+## 2. GET /api/clients/:email
+**Description:** Retrieves a specific client by their email.
+
+**Method:** GET  
+**URL:** `/api/clients/:email`
+
+### Request Parameters
+- `email` (string) - The email of the client to retrieve.
+
+### Request Body
+None
+
+### Response
+**Success (200):**
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "bankAccountBalance": 5000,
+  "investmentAccountBalance": 2000
+}
+   **Error (404):**
+```json
+{ "error": "Client not found" }
+
+## 3. POST /api/clients
+**Description:** Adds a new client to the system.
+
+**Method:** POST  
+**URL:** `/api/clients`
+
+### Request Parameters
+None
+
+### Request Body
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "bankAccountBalance": 5000,
+  "investmentAccountBalance": 2000
+}
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "bankAccountBalance": 5000,
+  "investmentAccountBalance": 2000
+}
+
+## 4. PUT /api/clients/:email
+**Description:** Updates an existing client’s information.
+
+**Method:** PUT  
+**URL:** `/api/clients/:email`
+
+### Request Parameters
+- `email` (string) - The email of the client to update.
+
+### Request Body
+```json
+{
+  "name": "John Smith",
+  "bankAccountBalance": 10000,
+  "investmentAccountBalance": 3000
+}
+### Response
+**Success (200):**
+```json
+{
+  "name": "John Smith",
+  "email": "john@example.com",
+  "bankAccountBalance": 10000,
+  "investmentAccountBalance": 3000
+}
+
 5. DELETE /api/clients/:email
    Description: Deletes a client from the system by email.
    Method: DELETE

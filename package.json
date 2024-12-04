@@ -9,6 +9,7 @@
     "start:typescript": "ts-node src-lecture/typescript-lecture.ts",
     "start:lecture-server": "ts-node src-lecture/server/index.ts",
     "start:server": "ts-node src/A_Server/Server.ts",
+    "start:server-original": "ts-node src/A_Server/ServerOriginal.ts",
     "start:lecture-client": "cd src-lecture/client && npm start",
     "start:client": "cd src/client && npm start",
     "build:styles": "sass src/Templates/styles.scss src/Templates/styles.css"
@@ -36,6 +37,7 @@
     "bootstrap-icons": "^1.11.3",
     "cors": "^2.8.5",
     "express": "^4.21.1",
+    "mongoose": "^8.8.3",
     "sass": "^1.80.6"
   }
 }
