@@ -16,8 +16,10 @@
       <div class="carousel-item" [class.active]="$index === 0">
         <img [src]="image.src" class="d-block w-100" [alt]="image.alt" [width]="image.width" [height]="image.height">
         <div class="carousel-caption d-none d-md-block">
+          <div class="text-background">
           <h5>{{ image.title }}</h5>
           <p>{{ image.caption }}</p>
+          </div>
         </div>
       </div>
     }

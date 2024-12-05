@@ -19,7 +19,7 @@ $font-family-base: "Roboto", sans-serif;
 
 $navbar-brand-font-size: 1.5rem;
 .navbar .nav-link {
-  font-weight: bold;
+  font-weight: bold !important;
 }
 
 $body-color-dark: #d3952c;
@@ -62,6 +62,10 @@ $carousel-caption-color: #fbd228;
   }
 }
 
+.text-background {
+  background-color: rgba(30, 66, 211, 0.6);
+}
+
 // these dont work for some reason
 //$card-bg-dark: #a8a0a0;
 //$card-color-dark: #0707ca;
@@ -78,6 +82,10 @@ $table-color: #090043;
     max-height: 600px;
     object-fit: cover; // Crop nicely
   }
+}
+
+input:focus {
+  color: black !important;
 }
 
 // Navbar
@@ -110,7 +118,7 @@ $card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 [data-bs-theme="dark"] input {
-  color: #ffffff;
+  color: #080df6;
   border-color: #495057;
 }
 
