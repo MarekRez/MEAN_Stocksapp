@@ -11,8 +11,6 @@ import {StockData} from "../client/src/app/types/stockdata-type";
 import connectToDatabase from "./Database";
 import ClientModel from "./Models/ClientModel";
 import StockModel from "./Models/StockModel";
-import mongoose from "mongoose";
-import { ObjectId } from 'mongoose';  // Import ObjectId from mongoose
 
 const app = express();
 const port = 3000;
@@ -198,7 +196,7 @@ app.put(`${API}/clients/:email`, async (req: Request, res: Response) => {
 
 // . . .
 
-
+const tradingCompany = new TradingCompany();
 // POST - investovanie do akcie
 app.post(`${API}/clients/:email/invest`, async (req: Request, res: Response) => {
     const email = req.params.email;
@@ -229,6 +227,8 @@ app.post(`${API}/clients/:email/invest`, async (req: Request, res: Response) => 
             investmentAccount
         );
 
+        tradingCompany.addClient(client);
+
         // Create a new Stock document
         const stockDB = new StockModel({
             symbol: stockSymbol,
@@ -247,7 +247,7 @@ app.post(`${API}/clients/:email/invest`, async (req: Request, res: Response) => 
 
             clientData.investmentAccountBalance = client.getInvestmentAccount().getBalance();
 
-            // Add the stock ObjectId to the client's stocks array
+            // Add the stock ObjectId to the client's stocks array - doesnt work
             clientData.stocks.push(stockDB);
 
             await clientData.save();
@@ -302,24 +302,50 @@ app.post(`${API}/clients/:email/sell`, async (req: Request, res: Response) => {
             investmentAccount
         );
 
-        const investedStock = investmentAccount.getStocks().find(s => s.name === stockSymbol);
+        // Find the stock in the client's stocks array
+        const investedStockIndex = clientData.stocks.findIndex(s => s.symbol === stockSymbol);
 
-        if (!investedStock) {
+        if (investedStockIndex === -1) {
             res.status(404).json({ error: `Stock ${stockSymbol} not found in portfolio` });
             return;
         }
 
+        const investedStock = clientData.stocks[investedStockIndex];
+
+        const investedStockLocal = new Stock(
+            investedStock.symbol as StockSymbol,
+            "USD",
+            investedStock.stockPrice,
+            1,
+            1,
+            1,
+            investedStock.totalShares
+        );
+
+        // Calculate how much to withdraw based on shares sold
         const amountToWithdraw = sharesToSell * investedStock.stockPrice;
 
-        const result = investmentAccount.withdrawFromStock(investedStock, amountToWithdraw);
-
-        if (!result.success) {
-            res.status(400).json({ error: result.message });
+        if (investedStock.totalShares < sharesToSell) {
+            res.status(400).json({ error: 'Not enough shares to sell' });
             return;
         }
 
+        // Update the stock's share count or remove it if there are no shares left
+        investedStock.totalShares -= sharesToSell;
+
+        if (investedStock.totalShares === 0) {
+            // Remove stock from the portfolio if no shares are left
+            clientData.stocks.splice(investedStockIndex, 1);
+        }
+
+        // Withdraw the amount from the investment account
+        investmentAccount.withdrawFromStock(investedStockLocal, amountToWithdraw);
+
+        // Update the investment account balance
         clientData.investmentAccountBalance = client.getInvestmentAccount().getBalance();
         await clientData.save();
+
+        tradingCompany.addClient(client); // Add the updated client to the array
 
         res.json({
             message: `Sold ${sharesToSell} shares of ${stockSymbol}`,
@@ -336,7 +362,6 @@ app.post(`${API}/clients/:email/sell`, async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Failed to process stock sale' });
     }
 });
-
 
 // POST - simulovanie portfolia s akciami pocas mesiacov
 app.post(`${API}/portfolio`, (req: Request, res: Response): void => {
@@ -390,26 +415,32 @@ app.post(`${API}/portfolio`, (req: Request, res: Response): void => {
 });
 
 // GET - zoznam akcii klientov
-app.get(`${API}/client/stocks`, (req: Request, res: Response) => {
+app.get(`${API}/client/stocks`, async (req: Request, res: Response) => {
+    try {
+        const allClients = await ClientModel.find();
 
-    const allClients = clients.getAllClients();
-    const stocksData = allClients.map(client => {
-        return client.getInvestmentAccount().getStocks().map(stock => ({
-            email: client.getEmail(),
-            stockSymbol: stock.name,
-            shares: stock.totalShares,
-        }));
-    });
+        // Map the clients and their stocks
+        const stocksData = allClients.map(client => {
+            return client.stocks.map(stock => ({
+                email: client.email,
+                stockSymbol: stock.symbol, // Assuming stock has a 'symbol' field
+                shares: stock.totalShares, // Assuming stock has 'totalShares' field
+            }));
+        });
 
-    // danie vnorených polí do jedného poľa
-    const flattenedData = stocksData.flat();
+        const flattenedData = stocksData.flat();
 
-    if (flattenedData.length === 0) {
-        res.json([]); // vrati prazdne pole ak nie su ziadne akcie
-        return
+        if (flattenedData.length === 0) {
+            res.json([]);
+            return;
+        }
+
+        res.json(flattenedData);
+
+    } catch (error) {
+        console.error('Error fetching stocks:', error);
+        res.status(500).json({ error: 'Failed to fetch stocks' });
     }
-
-    res.json(flattenedData);
 });
 
 //. . .
@@ -583,7 +614,7 @@ app.get(`${API}/clients/exists/:email`, async (req: Request, res: Response) => {
 app.get(`${API}/clients/:email/investment/history`, (req: Request, res: Response) => {
     const email = req.params.email;
 
-    const client = clients.getAllClients().find(client => client.getEmail() === email);
+    const client = tradingCompany.getAllClients().find(client => client.getEmail() === email);
 
     if (!client) {
         res.status(404).json({ error: 'Client not found' });

@@ -19,8 +19,7 @@ const ClientSchema: Schema = new Schema({
     iban: { type: String, default: null }, // IBAN generated later
     bankAccountBalance: { type: Number, required: true, default: 0 }, // Default balance is 0
     investmentAccountBalance: { type: Number, required: true, default: 0 }, // Default balance is 0
-    stocks: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Stock' }]
-
+    stocks: [{ type: Object }]
 });
 
 // Create the Model
