@@ -10,9 +10,14 @@
         Odstraňujem ...
       </div>
     } @else {
+      <div class="mb-2">
+        <form [formGroup]="formGroup">
+          <input class="form-control" formControlName="search" [placeholder]="'Zadajte meno alebo priezvisko ...'">
+        </form>
+      </div>
       <app-table
         [columns]="clientsColumns"
-        [rows]="clients">
+        [rows]="filteredClients">
       </app-table>
     }
   </div>
