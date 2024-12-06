@@ -19,6 +19,7 @@ import {CarouselComponent} from '../../components/carousel/carousel.component';
   templateUrl: './client-list.component.html',
   styleUrl: './client-list.component.scss',
 
+  standalone: true
 })
 export class ClientListComponent implements OnInit{
 
@@ -68,6 +69,7 @@ export class ClientListComponent implements OnInit{
     { label: 'Akcie:', text: 'Upraviť', onCLick: (client: Client) => this.editClient(client)},
     { label: '', text: 'Odstrániť', onCLick: (client: Client) => this.deleteClient(client)},
   ]
+
   updateForm = this.formBuilder.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
