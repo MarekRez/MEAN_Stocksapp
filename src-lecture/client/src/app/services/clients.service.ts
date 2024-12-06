@@ -10,15 +10,23 @@ export class ClientsService {
 
   private http = inject(HttpClient);
 
-    getAll(): Observable<Person[]> {
-        return this.http.get<Person[]>('http://localhost:3000/api/clients');
-    }
+  getAll(): Observable<Person[]> {
+    return this.http.get<Person[]>('http://localhost:3000/api/clients');
+  }
 
-    create(client: Person): Observable<number> {
-        return this.http.post<number>('http://localhost:3000/api/clients', client);
-    }
+  create(client: Person): Observable<number> {
+    return this.http.post<number>('http://localhost:3000/api/clients', client);
+  }
 
-    delete(clientId: number) {
-        return this.http.delete<number>(`http://localhost:3000/api/clients/${clientId}`);
-    }
+  edit(client: Person): Observable<number> {
+    return this.http.put<number>(`http://localhost:3000/api/clients/${client.id}`, client);
+  }
+
+  delete(clientId: number) {
+    return this.http.delete<number>(`http://localhost:3000/api/clients/${clientId}`);
+  }
+
+  getById(id: number): Observable<Person> {
+    return this.http.get<Person>(`http://localhost:3000/api/clients/${id}`);
+  }
 }

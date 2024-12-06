@@ -2,7 +2,7 @@
   <thead>
   <tr>
     @for (column of columns; track $index) {
-      <th scope="col">{{column.label}}</th>
+      <th scope="col" [width]="column.width">{{column.label}}</th>
     }
   </tr>
   </thead>

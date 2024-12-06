@@ -3,4 +3,5 @@ export type Column<T> = {
   text?: string;
   attribute?: keyof T;
   onCLick?: (row: T) => void;
+  width?: string;
 }
