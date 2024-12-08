@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   imports: [
     ReactiveFormsModule
   ],
+  standalone: true,
   templateUrl: './client-create-edit.component.html'
 })
 export default class ClientCreateEditComponent implements OnInit {
