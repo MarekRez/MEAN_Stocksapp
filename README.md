@@ -1,8 +1,4 @@
-# Internetové a mobilné aplikácie I
-
----
-
-## Obsah predmetu
+## Obsah
 ### Základy JavaScriptu
 * Úvod do JavaScriptu: základná syntax, premenné, operátory
 * Funkcie a cykly: funkcie, cykly (for, while)
@@ -25,45 +21,3 @@
 ### Responzívny dizajn s Bootstrapom NEW
 * Použitie Bootstrapu: základy, grid systém
 * Responzívne prvky: tvorba responzívneho layoutu pre mobily
-
----
-
-## Literatúra
-### Základy JavaScriptu
-* JavaScript Tutorial (https://www.w3schools.com/js/)
-### Pokročilejší JavaScript a úvod do TypeScriptu
-* Asynchrónne programovanie  (https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
-* TypeScript Documentation (https://www.typescriptlang.org/)
-### Tvorba REST API pomocou frameworku
-* Express.js Documentation (https://expressjs.com/)
-### Úvod do Angularu
-* Angular Documentation (https://angular.dev/)
-### Responzívny dizajn s Bootstrapom
-* Bootstrap Documentation (https://getbootstrap.com/)
-
----
-
-## Spôsob hodnotenia
-* 40 bodov - vypracovanie priebežných zadaní
-* 60 bodov - skúška formou testu
-* 5 bodov - (BONUS) aktivita
-
-Hodnotenie známkovacou stupnicou:
-
-| Známka | Počet bodov |
-|--------|:-----------:|
-| A      |  100 - 91   |
-| B      |   90 - 81   |
-| C      |   80 - 71   |
-| D      |   70 - 61   |
-| E      |   60 - 52   |
-| FX     |   51 - 0    |
-
-* Minimálny počet bodov potrebný na udelenie zápočtu - 21 bodov
-* Minimálny počet bodov potrebný na získanie skúšky - 31 bodov
-
-### Priebeh predmetu
-6 cvičení spojených s prednáškou (každý 2. týždeň počas semestra)
-
-### Úlohy
-* [TASKS.md](./TASKS.md)
