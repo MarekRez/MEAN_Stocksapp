@@ -14,55 +14,56 @@ import {StockData} from '../types/stockdata-type';
 export class ApiClientsService {
 
   private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:8080/api'; // or 'http://localhost:3000/api/clients' for local server
 
   getAll(): Observable<Client[]> {
-    return this.http.get<Client[]>('http://localhost:3000/api/clients');
+    return this.http.get<Client[]>(`${this.apiUrl}/clients`);
   }
 
   create(client: Client): Observable<Client> {
-    return this.http.post<Client>('http://localhost:3000/api/clients', client);
+    return this.http.post<Client>(`${this.apiUrl}/clients`, client);
   }
 
   delete(email: string): Observable<Client> {
-    return this.http.delete<Client>(`http://localhost:3000/api/clients/${email}`);
+    return this.http.delete<Client>(`${this.apiUrl}/clients/${email}`);
   }
 
   update(email: string, client: Partial<Client>) : Observable<Client> {
-    return this.http.put<Client>(`http://localhost:3000/api/clients/${email}`, client);
+    return this.http.put<Client>(`${this.apiUrl}/clients/${email}`, client);
   }
 
   getClientStocks(): Observable<Stock[]> {
-    return this.http.get<Stock[]>(`http://localhost:3000/api/client/stocks`);
+    return this.http.get<Stock[]>(`${this.apiUrl}/client/stocks`);
   }
 
   buyStock(email: string, stockData: StockData): Observable<StockTransactionResult> {
-    return this.http.post<StockTransactionResult>(`http://localhost:3000/api/clients/${email}/invest`, stockData);
+    return this.http.post<StockTransactionResult>(`${this.apiUrl}/clients/${email}/invest`, stockData);
   }
 
   sellStock(email: string, stockData: StockData): Observable<StockTransactionResult> {
-    return this.http.post<StockTransactionResult>(`http://localhost:3000/api/clients/${email}/sell`, stockData);
+    return this.http.post<StockTransactionResult>(`${this.apiUrl}/clients/${email}/sell`, stockData);
   }
   depositToBank(iban: string, amount: number): Observable<TransactionResult> {
-    return this.http.post<TransactionResult>(`http://localhost:3000/api/clients/${iban}/bank/deposit`, {amount} );
+    return this.http.post<TransactionResult>(`${this.apiUrl}/clients/${iban}/bank/deposit`, {amount} );
   }
 
   withdrawFromBank(iban: string, amount: number): Observable<TransactionResult> {
-    return this.http.post<TransactionResult>(`http://localhost:3000/api/clients/${iban}/bank/withdraw`, {amount});
+    return this.http.post<TransactionResult>(`${this.apiUrl}/clients/${iban}/bank/withdraw`, {amount});
   }
 
   depositToInvestment(iban: string, amount: number): Observable<TransactionResult> {
-    return this.http.post<TransactionResult>(`http://localhost:3000/api/clients/${iban}/investment/deposit`, {amount});
+    return this.http.post<TransactionResult>(`${this.apiUrl}/clients/${iban}/investment/deposit`, {amount});
   }
 
   withdrawFromInvestment(iban: string, amount: number): Observable<TransactionResult> {
-    return this.http.post<TransactionResult>(`http://localhost:3000/api/clients/${iban}/investment/withdraw`, {amount});
+    return this.http.post<TransactionResult>(`${this.apiUrl}/clients/${iban}/investment/withdraw`, {amount});
   }
 
   checkEmailExists(email: string): Observable<{ exists: boolean }> {
-    return this.http.get<{ exists: boolean }>(`http://localhost:3000/api/clients/exists/${email}`);
+    return this.http.get<{ exists: boolean }>(`${this.apiUrl}/clients/exists/${email}`);
   }
   getInvestmentHistory(email: string): Observable<{ history: InvestmentRecord[] }> {
-    return this.http.get<{ history: InvestmentRecord[] }>(`http://localhost:3000/api/clients/${email}/investment/history`);
+    return this.http.get<{ history: InvestmentRecord[] }>(`${this.apiUrl}/clients/${email}/investment/history`);
   }
 
 }

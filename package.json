@@ -4,14 +4,9 @@
   "description": "Internetové a mobilné aplikácie I",
   "scripts": {
     "start": "ts-node src/Main/index.ts",
-    "start:lecture-1": "node src/lecture-1.js",
-    "start:javascript": "node src-lecture/javascript-lecture.js",
-    "start:typescript": "ts-node src-lecture/typescript-lecture.ts",
-    "start:lecture-server": "ts-node src-lecture/server/index.ts",
-    "start:server": "ts-node src/A_Server/Server.ts",
-    "start:server-original": "ts-node src/A_Server/ServerOriginal.ts",
-    "start:lecture-client": "cd src-lecture/client && npm start",
-    "start:client": "cd src/client && npm start",
+    "start:server-mongoDB": "ts-node src/A_Server/Server.ts",
+    "start:server-local": "ts-node src/A_Server/ServerOriginal.ts",
+    "start:client-app": "cd src/client && npm start",
     "build:styles": "sass src/Templates/styles.scss src/Templates/styles.css"
   },
   "repository": {
